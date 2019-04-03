@@ -1,0 +1,14 @@
+html.dimbg .slide-background {
+	opacity: 0.5 !important;
+}
+
+#titlebg {
+background-color:rgb(119,136,153,0.6)}
+
+
+.caption{
+position: absolute;
+bottom: 0px;
+right: 0px;
+}
+
