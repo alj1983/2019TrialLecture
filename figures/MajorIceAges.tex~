@@ -1,0 +1,117 @@
+\documentclass{article}
+
+\renewcommand{\familydefault}{\sfdefault}  %serifenlose Schrift
+\usepackage{helvet} % Schrift: Helvetica
+
+
+\usepackage{graphicx,graphics,tikz}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{marvosym} % to be able to show male and female symbols with: \Female and \Male
+\usepackage{gensymb}
+\usepackage[graphics,tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\newlength\imagewidth
+\newlength\imagescale
+
+\begin{document}
+
+\pgfmathsetlength{\imagewidth}{10cm} % desired displayed width of image
+\pgfmathsetlength{\imagescale}{\imagewidth/2000} % pixel width of image
+% adjust scale of tikzpicture (and direction of y) such that pixel
+% coordinates can be used for drawing overlays:
+\usetikzlibrary{backgrounds}
+
+\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
+
+  % Insert Background Image place image (integer coordinates refer to
+
+
+
+\begin{scope}[scale=1.6,yshift=0.9cm,xshift=-7.2cm]
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*2,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*3,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*4,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*5,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+
+\begin{scope}[yshift=-1.4cm]
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*2,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*3,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*4,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*5,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\end{scope}
+
+\begin{scope}[yshift=-2.5cm]
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*2,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*3,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*4,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*5,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\end{scope}
+
+\begin{scope}[yshift=-3.5cm]
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*2,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*3,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*4,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\node[inner sep=0pt,outer sep=0pt] at (5.5cm+0.7cm*5,1.2cm)
+  {\includegraphics[width=0.4cm,bb= 38.6 170 53.3 207, clip]{2011-06-13-Fserratus_Kosmos.jpg}};
+\end{scope}
+\end{scope}
+
+
+\draw[-latex,very thick,draw=black,line width=0.15cm] (86.4:7cm) arc (86.4:-270:7cm);
+
+\draw[draw=red,fill=red,opacity=0.4,draw opacity=0.4] (0:0cm)--(90:7cm) arc(90:86.4:7cm)--(0:0cm);
+\draw[draw=red,fill=red,draw opacity=0.4,opacity=0.4] (0:0cm)--(86.4:7cm) arc(86.4:75.6:7cm)--(0:0cm);
+%\draw[-latex,very thick,fill=blue,draw opacity=0.8,draw=blue!50!black,opacity=0.4] (0:0cm) -- (75.6:7cm) arc(75.6:-270:7cm)--(0,0cm);
+
+%\node [black,scale=3] at (90:8cm) {25 h experiment}; 
+%\node [red,scale=3] at (88.8:8cm) {15 min stress};
+\node [red,scale=3] at (120:9cm) {60 min stress};
+%\node [blue] at (-97.2:7.5cm) {24 h recovery};
+%\draw [dashed] (90:7cm) -- (90:9cm);
+%\draw [dashed,line width=0.1cm] (86.4:7cm) -- (86.4:8.6cm);
+\draw [dashed,line width=0.1cm] (75.6:7cm) -- (75.6:8.6cm);
+%\node at (90:9.2cm){0/3};
+%\node[scale=3] at (86.4:9.2cm){1};
+\node[scale=3] at (75.6:9.2cm){2};
+
+\draw[very thick,-latex,red,line width=0.15cm] (90:7cm) arc (90:86.4:7cm);
+\draw[very thick,-latex,red,line width=0.15cm] (86.4:7cm) arc (86.4:75.6:7cm);
+%\draw[very thick,<-latex,blue] (75.6:7.1cm) arc (75.6:-270:7.1cm);
+
+%(0:0cm) arc (0:90:12cm);
+\end{tikzpicture}
+\end{document}

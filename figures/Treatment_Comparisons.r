@@ -1,0 +1,470 @@
+# With this skript I intend to analyze whether there is a significant
+#  difference between the populations in the control (absolute gene
+#  expression) and in the treatment groups (fold change/relative gene
+#  expression). 
+
+library("nparLD")
+
+
+#####################################################################
+#####################################################################
+########## Relative expression of treatment samples #################
+#####################################################################
+#####################################################################
+
+# An arcsine transformation does not make sense, since my values do
+# not only reach from 0 to 1.  I try with a log transformation.  The
+# tests showed that not all data can be normalized by log-transforming
+# them. Thus, I need to analyze the data with with PERMANOVA
+
+AllBoxplotOutliersRemoved32 <- read.table("/home/alj/Documents/org_files/data/ScientificJournal/2012ScientificJournal/Dec/2012-12-18-Fs_32_FoldChange_AllBoxplotOutliersRemoved.txt",header=TRUE)
+
+AllBoxplotOutliersRemoved28 <- read.table("/home/alj/Documents/org_files/data/ScientificJournal/2012ScientificJournal/Dec/2012-12-18-Fs_28_FoldChange_AllBoxplotOutliersRemoved.txt",header=TRUE)
+
+
+
+
+# Identify missing NA values
+
+FT32 <- rbind(AllBoxplotOutliersRemoved32,
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D16",NA,NA,NA,"HSP70","24h",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D16",NA,NA,NA,"HSP90","24h",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D16",NA,NA,NA,"sHSP","24h",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D21",NA,NA,NA,"HSP70","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D21",NA,NA,NA,"HSP90","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D21",NA,NA,NA,"sHSP","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D21",NA,NA,NA,"HSP70","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D21",NA,NA,NA,"HSP90","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D21",NA,NA,NA,"sHSP","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R7",NA,NA,NA,"sHSP","24h",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R3",NA,NA,NA,"HSP70","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R3",NA,NA,NA,"HSP90","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R3",NA,NA,NA,"sHSP","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R7",NA,NA,NA,"HSP70","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R7",NA,NA,NA,"HSP90","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R7",NA,NA,NA,"sHSP","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Norway","K28",NA,NA,NA,"HSP70","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Norway","K16",NA,NA,NA,"HSP70","24h",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Norway","K27",NA,NA,NA,"sHSP","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S39",NA,NA,NA,"HSP70","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S39",NA,NA,NA,"HSP90","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S39",NA,NA,NA,"sHSP","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S40",NA,NA,NA,"HSP70","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S40",NA,NA,NA,"HSP90","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S40",NA,NA,NA,"sHSP","15",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S46",NA,NA,NA,"sHSP","24h",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S40",NA,NA,NA,"sHSP","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S46",NA,NA,NA,"HSP70","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S46",NA,NA,NA,"HSP90","60",NA,NA,NA,32,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S46",NA,NA,NA,"sHSP","60",NA,NA,NA,32,NA,NA,NA,NA)      
+      )
+
+
+FT28 <- rbind(AllBoxplotOutliersRemoved28,
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D32",NA,NA,NA,"HSP70","15",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D41",NA,NA,NA,"sHSP","15",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D38",NA,NA,NA,"HSP70","60",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Denmark","D41",NA,NA,NA,"sHSP","60",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R33",NA,NA,NA,"sHSP","0",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R21",NA,NA,NA,"sHSP","15",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R33",NA,NA,NA,"sHSP","15",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R33",NA,NA,NA,"sHSP","24h",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R21",NA,NA,NA,"sHSP","60",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"France","R33",NA,NA,NA,"sHSP","60",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Norway","K13",NA,NA,NA,"HSP90","24h",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Norway","K6",NA,NA,NA,"sHSP","24h",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Norway","K6",NA,NA,NA,"sHSP","60",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S25",NA,NA,NA,"sHSP","24h",NA,NA,NA,28,NA,NA,NA,NA),
+      c(NA,NA,NA,NA,NA,NA,"Spain","S15",NA,NA,NA,"HSP70","60",NA,NA,NA,28,NA,NA,NA,NA)
+)
+
+
+
+# Remove all data with FoldChange==NA
+# At this step I decide whether to take AllOutliersRemoved or AllBoxplotOutliersRemoved
+
+
+#FT32 <- AllBoxplotOutliersRemoved32[is.na(AllBoxplotOutliersRemoved32$FoldChange)!=TRUE,]
+#Data32.1 <- tapply(FT32$MeanCT,list(FT32$Gene,FT32$Population,FT32$Treatment),length)
+
+#FT28 <- AllBoxplotOutliersRemoved28[is.na(AllBoxplotOutliersRemoved28$FoldChange)!=TRUE,]
+#Data28.1 <- tapply(FT28$MeanCT,list(FT28$Gene,FT28$Population,FT28$Treatment),length)
+
+
+# Do the analysis for the 32°C and the 28°C stress experiment and put
+# the results for the three Hsps in a list.
+
+
+
+FT <- rbind(FT28,FT32)
+# Combine the stress data
+
+HSP70Compare <- subset(FT,FT$Gene=="HSP70")
+HSP90Compare <- subset(FT,FT$Gene=="HSP90")
+sHSPCompare <- subset(FT,FT$Gene=="sHSP")
+
+HSPs <- c("HSP70Compare","HSP90Compare","sHSPCompare")
+
+Meanslist <- vector("list",2*length(HSPs))
+SElist <- vector("list",2*length(HSPs))
+significancelist <- vector("list",2*length(HSPs))
+significancenumbers <- vector("list",2*length(HSPs))
+ANOVAlist <- vector("list",2*length(HSPs))
+CIsignificances <- vector("list",2*length(HSPs))
+ciulist <- vector("list",2*length(HSPs))
+cillist <- vector("list",2*length(HSPs))
+Comparison15 <- vector("list",2*length(HSPs))
+Comparison60 <- vector("list",2*length(HSPs))
+Comparison24 <- vector("list",2*length(HSPs))
+
+
+
+for (l in 1:length(HSPs)){
+# Here I can change which gene shall be analyzed
+overall <- get(HSPs[l])
+
+for (t in c(28,32)){
+
+if (t==28){H=l
+       }else{H=l+3
+         }
+d <- subset(overall,overall$Temperature==t,drop=TRUE)
+
+
+
+
+
+d.Means <- as.matrix(tapply(as.numeric(as.vector(d$FoldChange)),list(as.factor(as.vector(d$Population)),as.vector(d$Treatment)),mean,na.rm=TRUE))
+d.Means <- as.matrix(rbind(d.Means[3,c(1,2,4,3)],d.Means[1,c(1,2,4,3)],d.Means[2,c(1,2,4,3)],d.Means[4,c(1,2,4,3)]))
+rownames(d.Means) <- c("Norway","Denmark","France","Spain")
+
+Meanslist[[H]] <- d.Means
+
+library(plotrix)
+
+d.SEs <- tapply(as.numeric(as.vector(d$FoldChange)),list(as.factor(as.vector(d$Population)),as.vector(d$Treatment)),std.error)
+d.SEs <- as.matrix(rbind(d.SEs[3,c(1,2,4,3)],d.SEs[1,c(1,2,4,3)],d.SEs[2,c(1,2,4,3)],d.SEs[4,c(1,2,4,3)]))
+rownames(d.SEs) <- c("Norway","Denmark","France","Spain")
+
+
+SElist[[H]] <- d.SEs
+
+
+
+
+
+
+
+
+
+
+
+
+
+d.ANOVA <- f1.ld.f1(y=d$FoldChange,time=d$Treatment,group=d$Population,subject=d$PopInd,time.name="Duration",group.name="Population",time.order=c("0","15","60","24h"),group.order=c("Norway","Denmark","France","Spain"),plot.RTE=TRUE, show.covariance=TRUE,order.warning=TRUE,description=FALSE)
+
+d.A <- d.ANOVA$ANOVA.test
+ANOVAlist[[H]] <- d.A
+
+
+
+# Making a Dunnett-wise comparison with confidence intervals to see if
+# the hsp gene expression is significantly upregulated
+
+Du <- c("0","15","60","24h")
+Po <- c("Norway","Denmark","France","Spain")
+
+Ds <- numeric(0)
+Ps <- character(0)
+ls <- numeric(0)
+us <- numeric(0)
+
+for (D in Du){
+for (P in Po){
+Ds <- c(Ds,D)    
+Ps <- c(Ps,P)
+V <- as.numeric(as.vector(subset(d$FoldChange,d$Treatment==D&d$Population==P,drop=TRUE)))
+a=numeric(1000)
+for (i in 1:1000){
+a[i] <- mean(sample(V,length(V),replace=TRUE),na.rm=TRUE)
+}
+low=quantile(a,0.025,na.rm=TRUE)
+up=quantile(a,0.975,na.rm=TRUE)
+
+ls <- c(ls,low)
+us <- c(us,up)
+}
+}
+
+# Alternatively, I might test for each species a dunnett-wise
+# comparsion (to the PI_Abs values) with the function mctp.rm in the
+# package nparcomp
+
+
+d.CIus <-  matrix(data = us, nrow = 4, ncol = 4, byrow = FALSE)
+rownames(d.CIus) <- c("Norway","Denmark","France","Spain")
+colnames(d.CIus) <- c(0,15,60,24)
+ciulist[[H]] <- d.CIus
+
+
+d.CIls <-  matrix(data = ls, nrow = 4, ncol = 4, byrow = FALSE)
+rownames(d.CIls) <- c("Norway","Denmark","France","Spain")
+colnames(d.CIls) <- c(0,15,60,24)
+cillist[[H]] <- d.CIls
+
+d.CIsignificance <- character(length(ls))
+d.CIsignificance[which(ls>1)]="*"
+d.CIsign.matrix <- matrix(data=d.CIsignificance, nrow = 4, ncol = 4, byrow = FALSE)
+rownames(d.CIsign.matrix) <- c("Norway","Denmark","France","Spain")
+colnames(d.CIsign.matrix) <- c(0,15,60,24)
+CIsignificances[[H]] <- d.CIsign.matrix
+
+library("nparcomp")
+# At each of the time points, comparing the populations to each other
+
+# For time point 0, I have made a separate analysis. 
+
+
+# 15 mins
+Hs.Pop15 <- subset(d,d$Treatment=="15",drop=TRUE)
+
+Paircomp <- nparcomp(as.numeric(as.vector(Hs.Pop15$FoldChange))~Hs.Pop15$Population,data=Hs.Pop15,type="Tukey",conf.level=0.95,alternative="two.sided",plot.simci=TRUE,info=TRUE,asy.method="mult.t")
+
+Comparison15[[H]]=Paircomp$Analysis
+
+significancenumbers.15=Paircomp$Analysis[c(2,4,6,1,3,5),6]
+significancesTrue <- significancenumbers.15<0.05
+names(significancesTrue) <- c("N-D","N-F","N-S",
+                       "D-F","D-S",
+                       "F-S")
+library("multcompView")
+Comparisons <- c("N","D","F","S")
+Letters.15 <- multcompLetters(significancesTrue)$Letters[match(c("N","D","F","S"),names(multcompLetters(significancesTrue)$Letters))]
+
+if(length(unique(Letters.15)) == 1){
+  Letters.15=rep("",4)
+}else{Letters.15=Letters.15}
+
+
+# 60 mins
+Hs.Pop60 <- subset(d,d$Treatment=="60",drop=TRUE)
+
+Paircomp <- nparcomp(as.numeric(as.vector(Hs.Pop60$FoldChange))~Hs.Pop60$Population,data=Hs.Pop60,type="Tukey",conf.level=0.95,alternative="two.sided",plot.simci=TRUE,info=TRUE,asy.method="mult.t")
+
+Comparison60[[H]]=Paircomp$Analysis
+
+significancenumbers.60=Paircomp$Analysis[c(2,4,6,1,3,5),6]
+significancesTrue <- significancenumbers.60<0.05
+names(significancesTrue) <- c("N-D","N-F","N-S",
+                       "D-F","D-S",
+                       "F-S")
+library("multcompView")
+Comparisons <- c("N","D","F","S")
+Letters.60 <- multcompLetters(significancesTrue)$Letters[match(c("N","D","F","S"),names(multcompLetters(significancesTrue)$Letters))]
+
+if(length(unique(Letters.60)) == 1){
+  Letters.60=rep("",4)
+}else{Letters.60=Letters.60}
+
+
+# 24 h
+Hs.Pop24 <- subset(d,d$Treatment=="24h",drop=TRUE)
+
+Paircomp <- nparcomp(as.numeric(as.vector(Hs.Pop24$FoldChange))~Hs.Pop24$Population,data=Hs.Pop24,type="Tukey",conf.level=0.95,alternative="two.sided",plot.simci=TRUE,info=TRUE,asy.method="mult.t")
+
+Comparison24[[H]]=Paircomp$Analysis
+
+significancenumbers.24=Paircomp$Analysis[c(2,4,6,1,3,5),6]
+significancesTrue <- significancenumbers.24<0.05
+names(significancesTrue) <- c("N-D","N-F","N-S",
+                       "D-F","D-S",
+                       "F-S")
+library("multcompView")
+Comparisons <- c("N","D","F","S")
+Letters.24 <- multcompLetters(significancesTrue)$Letters[match(c("N","D","F","S"),names(multcompLetters(significancesTrue)$Letters))]
+
+if(length(unique(Letters.24)) == 1){
+  Letters.24=rep("",4)
+}else{Letters.24=Letters.24}
+
+
+
+
+
+significancelist[[H]] <-  as.data.frame(cbind(Letters.15,Letters.60,Letters.24))
+significancenumbers[[H]] <-  as.data.frame(cbind(significancenumbers.15,significancenumbers.60,significancenumbers.24))
+rownames(significancenumbers[[H]])=c("N-D","N-F","N-S",
+                       "D-F","D-S",
+                       "F-S")
+
+}}
+
+listnames <- c("HSP70.28","HSP90.28","sHSP.28","HSP70.32","HSP90.32","sHSP.32")
+
+names(Meanslist) <- listnames
+names(SElist) <- listnames
+names(significancelist) <- listnames
+names(significancenumbers) <- listnames
+names(ANOVAlist) <- listnames
+names(ciulist) <- listnames
+names(cillist) <- listnames
+names(Comparison15) <- listnames
+names(Comparison60) <- listnames
+names(Comparison24) <- listnames
+names(CIsignificances) <- listnames
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### Plotting the results
+
+
+error.bar <- function(x, y, upper, lower=upper, length=0.05,...){
+        if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+        stop("vectors must be same length")
+        arrows(x,upper, x, lower, angle=90, code=3, length=length, ...)
+        }
+
+
+error.bar2 <- function(x, y, upper, lower=upper, length=0.05,...){
+        if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+        stop("vectors must be same length")
+        arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, ...)
+        }
+
+
+
+
+
+
+
+######################################################
+############# Plotting ###############################
+######################################################
+
+
+error.bar3 <- function(x, y, upper, lower=upper, length=0.05,...){
+        if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+        stop("vectors must be same length")
+        arrows(lower,x,upper, x, angle=90, code=3, length=length, ...)
+        }
+
+
+
+
+cnorway <- "#fdfdfd"
+cdenmark <- "#808080"
+cfrance<- "#dfdfdf"
+cspain <- "#202020"
+
+
+################ Plot for sHSP:
+png(filename="/home/alj/Documents/writing/2012HSR/2012HeatShockResponse/Audioslides/images/TreatmentComparisonsSHSP.png",width=60,height=65,units='mm',res=700,pointsize=10)
+#The line width of 1 is 1/96 inch which is about 0.25mm
+par(xpd=NA,mar=c(1,0,2,0),oma=c(3,6.5,0,0),mgp=c(4,2,1),font=1,ps=10,mfrow=c(2,1),bg=NA)
+
+# 28°C stress
+
+Means28 <- Meanslist$sHSP.28[,2:4]
+SEs28 <- SElist$sHSP.28[,2:4]
+significance28 <- c(as.character(significancelist$sHSP.28[,1]),
+                    as.character(significancelist$sHSP.28[,2]),
+                    as.character(significancelist$sHSP.28[,3]))
+
+CIsignificance28 <- c(as.character(CIsignificances$sHSP.28[,2]),
+                    as.character(CIsignificances$sHSP.28[,3]),
+                    as.character(CIsignificances$sHSP.28[,4]))
+             
+                                        
+barx <- barplot(Means28[,3], beside=TRUE,col=c(rgb(51,102,0,maxColorValue=255),rgb(255,221,17,maxColorValue=255),rgb(102,51,153,maxColorValue=255),rgb(51,221,238,maxColorValue=255)),border="white",names.arg=c("15 min","60 min","24 h"),xaxt="n",main="28 °C", ylim=c(1,10000),axis.lty=1,xlab="", ylab="",lwd=1,cex.lab=1,cex.axis=1,las=1,cex.names=1,cex.main=0.8,ylog=TRUE,log="y",axis=FALSE)
+axis(2, at=c(1,10,100,1000,10000),las=1)
+error.bar2(barx,Means28[,3],SEs28[,3],lwd=1)
+
+distances <- Means28[,3]
+distances <- distances+7000
+text(barx,distances,significance28[9:12],cex=1)
+
+
+#if (ANOVAlist$sHSP.28[2,3]<=0.05){
+#text(barx,distances,CIsignificance28,cex=2)
+#}
+
+
+
+
+
+
+
+
+## Means28 <- Meanslist28$sHSPCompare[,2:4]
+## SEs28 <- SElist28$sHSPCompare[,2:4]
+## significance28 <- c(as.character(significancelist28$sHSPCompare[,1]),
+##                     as.character(significancelist28$sHSPCompare[,2]),
+##                     as.character(significancelist28$sHSPCompare[,3]))
+                                        
+
+## barx <- barplot(Means28[,3], beside=TRUE,col=c(rgb(51,102,0,maxColorValue=255),rgb(255,221,17,maxColorValue=255),rgb(102,51,153,maxColorValue=255),rgb(51,221,238,maxColorValue=255)),border="white",names.arg=c("15 min","60 min","24 h"),xaxt="n",main="28°C", ylim=c(1,10000),axis.lty=1,xlab="", ylab="",lwd=1,cex.main=1,cex.lab=1,cex.axis=1,las=1,cex.names=1,cex.main=1,ylog=TRUE,log="y",axis=FALSE)
+## axis(2, at=c(1,10,100,1000,10000),las=1)
+## error.bar2(barx,Means28[,3],SEs28[,3],lwd=1)
+
+## distances <- Means28[,3]
+## 
+
+
+# 32°C stress
+
+
+# 32°C stress
+Means32 <- Meanslist$sHSP.32[,2:4]
+SEs32 <- SElist$sHSP.32[,2:4]
+significance32 <- c(as.character(significancelist$sHSP.32[,1]),
+                    as.character(significancelist$sHSP.32[,2]),
+                    as.character(significancelist$sHSP.32[,3]))
+
+CIsignificance32 <- c(as.character(CIsignificances$sHSP.32[,2]),
+                    as.character(CIsignificances$sHSP.32[,3]),
+                    as.character(CIsignificances$sHSP.32[,4]))
+                        
+                    
+            
+barx <- barplot(Means32[,3], beside=TRUE,col=c(rgb(51,102,0,maxColorValue=255),rgb(255,221,17,maxColorValue=255),rgb(102,51,153,maxColorValue=255),rgb(51,221,238,maxColorValue=255)),border="white",names.arg="",main="32 °C", ylim=c(1,10000),axis.lty=1,xlab="", ylab="",lwd=1,cex.main=1,cex.lab=1,cex.axis=1,las=1,cex.names=1,cex.main=0.8,ylog=TRUE,log="y",axes=FALSE,xaxt="n")
+axis(2, at=c(1,10,100,1000,10000),las=1)
+
+error.bar2(barx,Means32[,3],SEs32[,3],lwd=1)
+
+distances <- Means32+7000
+
+
+#text(barx,distances,significance32[9:12],cex=1)
+
+#mtext(side = 2, text = expression(paste("Fold change in relative normalized gene expression")), line = 5, ps=10,outer=TRUE,cex=1.2,at=0.45)
+
+
+dev.off()
+dev.off(dev.prev())
+

@@ -15,11 +15,12 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/own.css">
-		<link rel="stylesheet" href="css/theme/league.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="css/own.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -29,60 +30,769 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
+
 	</head>
 	<body>
 	  <div class="reveal">
-	    <header style="position: absolute;bottom: 10px; right:10px; z-index:500; font-size:20px;background-color: rgba(0,0,0,0.3)"></header>
+	    <header style="position: absolute;bottom: 20px; left:30px; z-index:500; font-size:30px; color: #ffffff; background-color: rgba(0,0,0,0.3)"></header>
 
 	    <!-- absolute positioning of text on the page from https://www.raymondcamden.com/2014/04/01/Adding-an-Absolutely-Positioned-Header-to-Revealjs -->
 		  <div class="slides">
 
 
-		    <section data-background="figures/home-bg1.jpg">
+		    <section>
 			     <!-- data-state="dimbg"> -->
-				  <h2 id=titlebg>Climate change impact on ocean forests</h2>
-				  <h3>Trial lecture 03.05.2019</h3>
-				  <h4>Nord University, NOrway</h4>
+				  <h2>Climate change impact on <br>ocean forests<br> and their biodiversity</h2>
+				  <h5>Trial lecture 03.05.2019</h5>
 				  <p>
-				    <small>Alexander Jueterbock</small>
+				    <small>Alexander Jueterbock, Researcher at Nord University</small>
 				  </p>
 		    </section>
 
-
-
-		     <section data-background="figures/7339653286_a7006c6732_h.jpg" data-state="header1">
-		       <style>.header1 header:after { content: "Kristine Deppe https://www.flickr.com/photos/33414049@N08/7339653286/"; }</style>
+		    <section>
 		      
-		     </section>
-
-		     		     <section data-background="figures/flowermeadow.jpg" data-state="header2">
-		       <style>.header2 header:after { content: "https://apuncto.de/wp-content/uploads/2018/04/Blumenwiesen-im-Garten-Titelbild.jpg"; }</style>
+		      <section>
+			<h3>The origin of fjords -<br> a hint to climate changes in the past</h3>
+			<img width="70%" height="auto" src="figures/IMG_4891.png">
+		      </section>
 		      
-		     </section>
-
-				     <!-- Now show an eelgrass flower -->
-		    
-				<section>
-				  <section data-background="figures/PicturesFromChristofferBostroem/Angso.jpg">
-				  </section>
-				  <section data-background="figures/PicturesFromChristofferBostroem/Sandskar.jpg">
-				  </section>
-				  <section data-background="figures/PicturesFromChristofferBostroem/Faro2.jpg">
-				  </section>
-				</section>
-				
-				<section>What is the methylome?
-				  <img src="figures/295822.png" style="">
-
-				</section>
-				
-				<section>Slide 2</section>
-				<section>Slide 3</section>
-				<section>
-				  <section>Vertical Slide 1</section>
-				  <section>Vertical Slide 2</section>
-				</section>
+		      <section>
+			<h3>Ice ages in earth history</h3>
+			<img width="82%" height="auto" src="figures/MajorIceAges.png">
+		      </section>
+		      
+		      <section>
+			<h3>Causes of climate fluctuations</h3>
+			<img width="100%" height="auto" src="figures/MilankovichCycles.png">
+		      </section>
+		      
+		      <section>
+			<h3>Pleistocene ice ages</h3>
+			<div id="left60">
+			  <img width="90%" height="auto" src="figures/Broecker-1985-HabitablePlanet.png">
 			</div>
+			<div id="right40">
+			  <p>Changes in</p>
+			  <ul>
+			    <li>Sea level</li>
+			    <li>Ocean currents</li>
+			    <li>Ocean gateways</li>
+			  </ul>
+			</div>
+		      </section>
+		      
+		      
+		      <section>
+			<h3>Fluctuations in temperature and CO<sub>2</sub></h3>
+			<img width="50%" height="auto" src="figures/Andersen-1997-Fig1-25_r.png">
+			<p class="authors">Andersen & Borns (1997); Scandinavian University Press</p>
+		      </section>
+		      
+		      <section>
+			<h3>Ocean acidification - <br>the other CO<sub>2</sub> problem</h3>
+			<img width="100%" height="auto" src="figures/Pelejero-2013-Fig1.png">
+			<p class="authors">Pelejero et al. (2010); Trends Ecol. Evol.</p>
+		      </section>
+		      
+		      <section>
+			<h3>Recent land and ocean warming</h3>
+			<img width="100%" height="auto" src="figures/ScientificAmerican_WarmingOceans_r.png">
+			<p class="authors">Christiansen, J. (2013); Scientific American</p>
+		      </section>
+		      
+		      <section>
+			<h3>Recent vs. historical warming</h3>
+			<div id="left80">
+			  <!-- from https://nordpil.com/portfolio/mapsgraphics/co2-trends/ -->
+			  <img width="70%" height="auto" src="figures/carbon_dioxide_and_temperature_historic_trends_full.png">
+			  <p class="authors">Ahlenius, H.; UNEP/GRID-Arendal</p>
+			</div>
+			<div id="right20">
+			  <small class="fragment grow">Higher CO<sub>2</sub> concentrations</small>
+			</div>
+		      </section>
+		    
+		    
+		    
+		      <section>
+			<h3>Predicted temperature increase</h3>
+			<img width="70%" height="auto" src="figures/TemperatureProjections.jpg">
+			<p class="authors">IPCC AR5 WG1 (2013), Chapter 12, Fig. 12-5.</p>		      
+		      </section>
+		      
+		      
+		      
+		      <section data-transition="zoom" data-background="#b5533c">
+			<p>+6°C in next 200 years<p>
+			<p class="fragment">>4 times faster than historical temperature changes</p>
+		      </section>
+
+		      
+		    </section>
+		    <section>
+		      
+		      
+		      <section>
+			<h2>What is the impact on <br><span class="fragment highlight-blue">ocean forests</span><br> and their<br> biodiversity?</h2>
+		      </section>
+		      
+		      <section>
+			<h2>Ocean forests</h2>
+			<h5>seagrass vs. seaweed (macroalgae)</h5>
+			<img width="60%" height="auto" src="figures/DpKzggJWwAAtz_B.jpg">
+			<p class="authors">https://twitter.com/projectseagrass/status/1050099510326808577</p>
+		      </section>
+
+		      <section>
+			<h5>Algae and plants are not closely related</h5>
+			<img width="100%" height="auto" src="figures/Cock2010Fig1a.png">
+			<p class="authors">Cock et al. (2010); Nature</p>
+		      </section>
+		      
+		      <section>
+			<p class="leftalign"> Seaweed: >5,000 species</p>
+			<p class="leftalign"> Seagrass: ca. 60 species</p>
+		      </section>
+
+		      
+
+		      <section>
+			<h5>Seaweed growth forms</h5>
+			<img width="80%" height="auto" src="figures/Peteiro2018.png">
+			<p class="authors">Peteiro (2018); Chapter 2 in <i>Alginates and Their Biomedical Applications</i></p>
+		      </section>
+
+		      <section>
+			<h5>Kelp distribution</h5>
+			<img width="100%" height="auto" src="figures/Teagle.png">
+			<p class="authors">Teagle et al. (2017); <i>Journal of Experimental Marine Biology and Ecology</i></p>
+		      </section>
+
+
+				      
+		      <section>
+			<h5>Fucoid (and kelp) distribution</h5>
+			<img width="100%" height="auto" src="figures/Wahl2015Fig1.png">
+			<p class="authors">Wahl et al. (2017); <i>Perspectives in Phycology</i></p>
+		      </section>
+
+		      <section>
+			<h5>Seagrass growth forms</h5>
+			<img width="100%" height="auto" src="figures/KilminsterSeagrass.png">
+			<p class="authors">Kilminster et al. (2015); <i>Science of the Total Environment</i></p>
+		      </section>
+
+		      <section>
+			<h5>Seagrass distribution</h5>
+			<img width="100%" height="auto" src="figures/VallePhDThesis.png">
+			<p class="authors">Valle M. (2017); PhD Thesis</p>
+		      </section>
+
+
+		     
+
+		      
+		      
+
+		    </section>
+
+		    <section>
+		      
+		      <section>
+			<h2>What is the <span class="fragment highlight-blue">impact</span> on <br>ocean forests<br> and their<br> biodiversity?</h2>
+		      </section>		    
+		      
+		     
+		      <section>
+			<h3>Why should we care about the climate change impact on ocean forests?</h3>
+			<p class="fragment">Ecosystem services are
+			  worth <br> >16 000 Euros ha<sup>-1</sup> year<sup>-1</sup> </p>
+			The value is much higher here: https://academic.oup.com/bioscience/article/68/2/64/4797262
+		      </section>
+
+		      <section data-background="figures/PicturesFromChristofferBostroem/Angso.jpg" data-state="header1">
+			<style>.header1 header:after { content:
+			"Christoffer Boström"; }</style>
+			<h4 class="titlebg">Nursery grounds</h4>
+		      </section>
+
+		      <section data-background="figures/PicturesFromChristofferBostroem/Sandskar.jpg" data-state="header2">
+			<style>.header2 header:after { content:
+			"Christoffer Boström"; }</style>
+			<h4 class="titlebg">Protection from erosion</h4>
+		      </section>
+
+		      <section data-background="figures/PicturesFromChristofferBostroem/Faro2.jpg" data-state="header3">
+			<style>.header3 header:after { content: "Christoffer Boström"; }</style>
+			<h4 class="titlebg">Habitat and food</h4>
+		      </section>
+
+		      <section data-background="figures/KelpForest.jpg" data-state="header10">
+			<style>.header10 header:after { content: "Dr. Mark Hixon, Oregon State University"; }</style>
+		      </section>
+		      
+		      
+
+		      <section data-background="figures/DSC_1488_new.png" data-state="header4">
+			<style>.header4 header:after { content: "Galice Hoarau"; }</style>
+			<h4 class="titlebg">Nutrient fixation</h4>
+		      </section>
+
+		      <section data-background="figures/IMG_0946_r.png">
+			<h4 class="titlebg">Protection from desiccation</h4>
+		      </section>
+
+		      <section>
+			<h4 class="titlebg">Carbon sequestration</h4>
+			<img width="30%" height="auto" src="figures/SeagrassCarbon.jpg">
+			<p class="authors">Photo credit: Oscar Serrano, https://www.eurekalert.org/multimedia/pub/165345.php</p>	
+		      </section>
+
+		      <!-- Organic carbon stores beneath seagrass meadows in Shark Bay. Organic material derived from seagrass roots, rhizomes and leaf sheaths is embedded in sandy sediments, forming organic deposits several meters in thickness. -->
+
+		      <section>
+			<h4 class="titlebg">Carbon sequestration</h4>
+			<img width="68%" height="auto" src="figures/KrauseJensen2016Fig2.png">
+			<p class="authors">Krause-Jensen & Duarte (2016); Nature Geoscience</p>	
+		      </section>
+
+		      <section>
+			<h4 class="titlebg">Source of alginates</h4>
+			<img width="60%" height="auto" src="figures/Trawler-comb-adj.jpg">
+			<p class="authors">http://stopptt.com/why-stop-seaweed-harvesting/</p>	
+		      </section>
+
+		      
+
+		      
+
+		      
+		    </section>
+
+
+		    <section>
+		      <section>
+			<h2>What is the <span class="fragment highlight-blue">impact</span> on <br>ocean forests<br> and their<br> biodiversity?</h2>
+		      </section>
+
+		      <section>
+			<h3>What climate-change related factor has the highest impact?</h3>
+		      </section>
+
+		      <section>
+			<h5>Temperate seaweed distribution limited by <br>10°C summer and 20°C winter isotherm</h5>
+			<img width="70%" height="auto" src="figures/TemperateRegion2_r.png">
+		      </section>
+		      
+		      <section>
+			<h5>Identifying most important range-limiting factors</h5>
+			<img width="75%" height="auto" src="figures/ENMs.png">
+		      </section>
+		      
+		      <section>
+			<h5>Temperature as most important factor for <br>dominant macroalgae</h5>
+			<img width="45%" height="auto" src="figures/ENMAlgae.png">
+			<p class="authors">Jueterbock et al. (2013,2016); <i>Ecology and Evolution</i></p>
+		      </section>
+
+
+		      <section>
+			<h5>Projected pH decrease</h5>
+			<img width="80%" height="auto" src="figures/pHPredictions.png">
+			<p class="authors">IPCC AR5 WG1 (2013), Fig. SPM.7c</p>
+		      </section>
+		      
+		      <section>
+			<h5>pH fluctuations in macroalgal beds</h5>
+			<img width="60%" height="auto" src="figures/Wahl2018Fig9b.jpg">
+			<small>pH
+			  profile through a <i>Fucus</i> belt
+			  under calm conditions day time = black dots,
+			  night time = white dots) and on a windy day
+			  (black triangles).
+			</small>
+			<p class="authors">Wahl et al. (2017); Limnology and Oceanography</p>
+		      </section>
+		      
+	
+		      
+		      <section>
+			<h5>Acidification is beneficial</h5>
+			<small>Seagrass and most macroalgae can use CO<sub>2</sub> and bicarbonate for photosynthesis</small>
+			<img width="90%" height="auto" src="figures/acidification2_med.jpeg">
+			<p class="authors">Figure credits: ib.bioninja.com.au</p>
+			<p class="authors">Koch et al. (2013); Global Change Biology</p>
+			<p class="authors">Cornwall et al. (2017); Scientific Reports</p>
+			
+			
+
+		      <!-- From the Duarte presentation: In contrast, the -->
+		      <!-- predicted rise in ocean CO2 concentration is -->
+		      <!-- likely to have a positive effect on growth and -->
+		      <!-- photosynthesis because most macrophytes are -->
+		      <!-- carbon-limited at current ocean dissolved -->
+		      <!-- inorganic carbon (DIC) (Koch et al., -->
+		      <!-- 2013). However, the effect is unlikely to be big -->
+		      <!-- since the predicted long-term rise in CO2 falls -->
+		      <!-- several orders ofmagnitude below current CO2 and -->
+		      <!-- pH fluctuations within seagrass beds and kelp -->
+		      <!-- forests (Saderne et al., 2013; Wahl et al., -->
+		      <!-- 2017). -->
+		      </section>
+
+		      <section>
+			<h5>Acidification can not counteract warming in <br><i>Zostera noltii</i></h5>
+			<div id="left50">
+			  <img width="100%" height="auto" src="figures/Repolho2017a.png">
+		      	</div>
+		      	<div id="right50">
+		      	  <img width="70%" height="auto" src="figures/Repolho2017ce.png">
+		      	</div>
+			
+			<p class="authors">Repolho et al. (2017); Scientific Reports</p>
+		      </section>
+		      
+		    </section>
+		    
+		     <section>
+		       <section>
+			 <h2>What is the impact on <br>ocean forests<br> and their<br><span class="fragment highlight-blue">biodiversity?</span></h2>
+		       </section>
+		       
+		       <section>
+			 <h2>The biodiversity of ocean forests</h2>
+			 <p>Levels of biodiversity</p>
+			 <ul>
+			   <li class="fragment">genetic</li>
+			   <li class="fragment">species</li>
+			   <li class="fragment">ecosystem</li>
+			 </ul>
+		       </section>
+		     </section>
+		     
+		  
+
+		    <section>
+		      <section>
+			<h2>Climate change impact on genetic diversity</h2>
+		      </section>
+
+		      
+		      <section>
+			<h5>Genetic diversity of <i>Fucus serratus</i></h5>
+			<small class="fragment">Three glacial refugia</small><br>
+			<img width="48%" height="auto" src="figures/Hoarau-2007-Fig1.jpg">
+			<img id="fucus" width="20%" height="auto" src="figures/IMG_1667_r.JPG">
+			<p class="authors">Hoarau et al. (2007); <i>Molecular Ecology</i></p>
+			<!-- Such north-shouth gradient is observed in a similar way also for other macrophtyes, including seagrass -->
+		      </section> 
+
+		      <section>
+		      	<h5>Genetic diversity important for</h5>
+			<ul>
+			  <li class="fragment">Adaptability and long-term survival</li>
+			</ul>
+		      	<!-- This suggests enhanced restoration success in genetically diverse meadows -->
+		      </section>
+				      
+		      <section>
+			<h5>Genetic diversity enhances survivability</h5>
+			<img width="37%" height="auto" src="figures/AlJanabi2016fig4bb.png">
+			<img id="fucus2" width="20%" height="auto" src="figures/IMG_1498_r.JPG">
+			<p class="authors" id="fucus3"><i>Fucus vesiculosus</i></p>
+			<p class="authors">Al-Janabi et al. (2016); <i>Marine Biology</i></p>
+		      </section>
+
+		      <section>
+		      	<h5>Genetic diversity important for</h5>
+			<ul>
+			  <li>Adaptability and long-term survival</li>
+			  <li class="fragment">Survivability under stress</li>
+			</ul>
+		      	<!-- This suggests enhanced restoration success in genetically diverse meadows -->
+		      </section>
+
+		      <section>
+			<h5>...heat stress recovery..</h5>
+			<p>in <i>Zostera marina</i></p>
+			<img width="70%" height="auto" src="figures/Reusch2005Fig1.jpg">
+			<!-- <img id="fucus2" width="8%" height="auto" src="figures/seagrass8.png"> -->
+			<!-- <p class="authors" id="fucus3"><i>Zostera marina</i></p> -->
+			<p class="authors">Reusch et al. (2005); <i>PNAS</i></p>
+		      </section>
+
+		      <section>
+		      	<h5>Genetic diversity important for</h5>
+			<ul>
+			  <li>Adaptability and long-term survival</li>
+			  <li>Survivability under stress</li>
+			  <li class="fragment">Resilience</li>
+			</ul>
+		      	<!-- This suggests enhanced restoration success in genetically diverse meadows -->
+		      </section>
+
+		      <section>
+			<h5>...biomass and faunal abundance...</h5>
+			<p>in <i>Zostera marina</i></p>
+			<img width="80%" height="auto" src="figures/Reusch2005Fig2.jpg">
+			<!-- <img id="fucus2" width="8%" height="auto" src="figures/seagrass8.png"> -->
+			<!-- <p class="authors" id="fucus3"><i>Zostera marina</i></p> -->
+			<p class="authors">Reusch et al. (2005); <i>PNAS</i></p>
+			<!-- This shows that species diversity in seagrass meadows depends on genetic diversity -->
+		      </section>
+
+		      <section>
+		      	<h5>Genetic diversity important for</h5>
+			<ul>
+			  <li>Adaptability and long-term survival</li>
+			  <li>Survivability under stress</li>
+			  <li>Resilience</li>
+			  <li class="fragment">Ecosystem services</li>
+			  <li class="fragment">Restoration</li>
+			</ul>
+		      	<!-- This suggests enhanced restoration success in genetically diverse meadows -->
+		      </section>
+		      
+		      <section>
+			<h5>Predicted range shifts until year 2200</h5>
+			<img width="85%" height="auto" src="figures/ENMAlgaeResults.png">
+			<p class="authors">Jueterbock et al. (2013,2016); <i>Ecology and Evolution</i></p>
+		      </section>
+
+		      
+
+		      <section data-state="header5">
+			<style>.header5 header:after { content: "JamesCoyer"; }</style>
+			<h5>1999: extensive meadows of <i>Fucus serratus</i></h5>
+			<img width="80%" height="auto" src="figures/RibadeoFs_new.png">
+			<img id="spain" width="20%" height="auto" src="figures/SpainSite.png">
+			<p class="credits">James Coyer</p>
+			<p class="authors">Jueterbock et al. (2013); <i>Ecology and Evolution</i></p>
+		      </section>
+
+		      <section>
+			<h5>2010: 90% abundance decline in 11 years</h5>
+			<img width="70%" height="auto" src="figures/2010-09-26-FsRiBadero67_new.png">
+			<p class="authors">Jueterbock et al. (2013); <i>Ecology and Evolution</i></p>
+		      </section>
+
+		   
+		      <section>
+			<h5>Dwarf forms with reduced reproductive capacity in Spain</h5>
+			<img width="60%" height="auto" src="figures/Viejo-2011-FigS1.png">
+			<p class="authors">Viejo et al. (2011); <i>Ecography</i></p>
+		      </section>
+
+		      <section>
+			<h5>1,250 km loss of southern range of <i>Fucus vesiculosus</i></h5>
+			<img width="40%" height="auto" src="figures/Nicastro2013Fig1.png">
+			<p class="authors">Nicastro et al. (2013); <i>BMC Biology</i></p>
+			<img id="fucus2" width="20%" height="auto" src="figures/IMG_1498_r.JPG">
+			<p class="authors" id="fucus3"><i>Fucus vesiculosus</i></p>
+		      </section>
+
+
+		      <section>
+			<h5>Range shift projections for <i>Zostera noltii</i></h5>
+			<p>Loss of high diversity in the south</p>
+			<img width="80%" height="auto" src="figures/ValleZn.png">
+			<img id="zostera" width="7%" height="auto" src="figures/ian-symbol-zostera-noltii.svg">
+			<!-- <p class="authors" id="zostera2"><i>Credits: Tracey Saxby</i></p> -->
+			<p class="authors">Valle et al. (2014); <i>Biological Conservation</i></p>
+		      </section>
+
+
+		      <section data-transition="zoom" data-background="#b5533c">
+			<p>Centers of genetic diversity (glacial refugia) are threatened with extinction
+			  RELEVANCE OF EPIGENETIC VARIAION IN SEAGRASS?
+			<p>
+		      </section>
+
+		      <section>
+			<h5>Upwelling regions and deep reefs as climate change refugia</h5>
+			
+			<div id="left60">
+			  <img width="70%" height="auto" src="figures/Lourenco2016Fig1a.png">
+			</div>
+			<div id="right40">
+			  <p class="smaller leftalign">Upwelling regions along shores of
+			    SW-Iberia and NW-Africa are
+			    climate change refugia for
+			    <i>Fucus guiryi</i></p>
+			</div>
+			<p class="authors leftalign">Lourenco et al. (2016), <i>Journal of Biogeograophy</i></p>
+		      </section>
+		      
+
+		      <!-- genetic diversity of seagrass more complicated as it reproduces also clonally -->
+		      <!-- Benefits of diversity in seagrass https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0038397 -->
+		      <!-- in my 2018 Fucus paper (but see also in my proposal) - in the habitat forming seagrass Z. marina, genotypic di- versity not only enhanced biomass production, but also abundance of the associated fauna under near-lethal water temperatures [82] and community resistance to grazing [83]. -->
+		    </section>
+
+
+		    
+
+
+		    <section>		    
+
+		      <section>
+			<h2>Climate change impact on species diversity</h2>
+		      </section>
+
+		      <section>
+			<h5>Increasing diversity in the Arctic</h5>
+			<img width="70%" height="auto" src="figures/KrauseJensen2014FrontMarSci.jpg">
+			<p class="authors">Krause-Jensen & Duarte (2014); <i>Frontiers in Marine Science</i></p>
+		      </section>
+
+		      <section>
+			<h5>Dispersal and invasive potential</h5>
+			<img width="100%" height="auto" src="figures/Dispersal.png">
+			<!-- Zostera shoots can remain positively buoyant for ca. 2 weeks, allowing for long-distance dispersal -->
+		      </section>
+		      
+		      <section>
+			<h5>Ongoing colonization of Arctic regions</h5>
+			<img width="100%" height="auto" src="figures/NorthwardShift.png">
+			<p class="authors">Mueller et al. (2009); <i>Botanica Marina</i></p>
+		      </section>
+
+		      <section>
+			<h5>Loss of canopy-forming seaweeds in warm-temperate regions</h5>
+			<img width="100%" height="auto" src="figures/Brodie2014Fig2c.png">
+			<p class="authors">Brodie et al. (2014); <i>Ecology and Evolution</i></p>
+		      </section>
+
+		      <section>
+			<h5>Shifts from kelp forests to turf</h5>
+			<h6>Flattending diversity</h6>
+			<img width="100%" height="auto" src="figures/FilbeeDexter2017.jpg">
+			<p class="authors">Filbee-Dexter & Wernberg (2017), <i>BioScience</i></p>
+		      </section>
+
+		      		      
+		      <section>
+			<h5>Future scenarios for temperate kelp forests</h5>
+			<img width="75%" height="auto" src="figures/Harley2012_all.png">
+			<p class="authors">Harley et al. (2012), <i>Journal of Phycology</i></p>
+		      </section>
+
+		      <section>
+			<h5>Rising temperatures favor mussel recruitment</h5>
+			<img width="90%" height="auto" src="figures/Ugarte2009Fig.png">
+			<p class="authors">Ugarte et al. (2009), <i>Journal of Applied Phycology</i></p>
+		      </section>
+
+		      <section>
+			<h5>fish control of macroalgal biomass on coral reefs</h5>
+			<img width="100%" height="auto" src="figures/Verges2014Fig1.jpg">
+			<p class="authors">Verges et al. (2009); <i>Proc. R. Soc. B Biol. Sci</i></p>
+		      </section>
+
+		      <section>
+			<h5>Poleward shift of herbivorous fishes</h5>
+			<img width="100%" height="auto" src="figures/Verges2014Fig2.jpg">
+			<p class="authors">Verges et al. (2009); <i>Proc. R. Soc. B Biol. Sci</i></p>
+		      </section>
+		      
+
+
+		      <section>
+			<h5>Tropicalization of kelp forests in Southern Japan</h5>
+			<img width="70%" height="auto" src="figures/Verges2014.jpg">
+			<p class="authors">Verges et al. (2009); <i>Proc. R. Soc. B Biol. Sci</i></p>
+			<!-- 		      Figure 4. Underwater photographs from Tosa Bay (Southern Japan) showing: (a) well-developed Ecklonia cava bed in the early 1990s; (b) overgrazed E. cava bed (‘isoyake’) in October 1997; (c) rocky barren area in January 2000; (d) coral communities present in January 2013. Photographs (a,d) and (b,c) were taken from sites ,50 m apart; the distance between sites (a–d) and (b,c) is approximately 400 m. The full original distribution of E. cava and its decline in Tosa Bay are reported by Serisawa et al. [34]. Photograph credits: (a–c) Zenji Imoto and (d) Yohei Nakamura. -->
+			<!-- [23–25,30] -->
+		      </section>
+
+
+
+		      <section>
+			<h5>Current difference between temperate and tropical seagrass ecosystems</h5>
+			<img width="100%" height="auto" src="figures/Hyndes2016BioScienceab.png">
+			<p class="authors">Hyndes et al. (2016), <i>BioScience</i></p>
+		      </section>
+
+		      <section>
+			<h5>Tropicalization of temperate seagrass meadows</h5>
+			<img width="100%" height="auto" src="figures/Hyndes2016BioSciencecd.png">
+			<p class="authors">Hyndes et al. (2016), <i>BioScience</i></p>
+		      </section>
+
+
+		      <!-- Read again our FMARS review -->
+		      <section>
+			<h5>36% of Shark Bay's temperate seagrass meadows damaged after heatwave in 2010/2011</h5>
+			<img width="25%" height="auto" src="figures/Murray2018Fig4.png">
+			<p class="authors">Arias-Ortiz et al. (2018); <i>Nature Climate Change</i></p>
+		      </section>		      
+		      
+		      <section data-transition="zoom" data-background="#b5533c">
+			<p>Increasing species diversity in the Arctic<p>
+			<p class="fragment">Regime shift (tropicalization) in warm-temperate regions<p>
+			<p class="smaller fragment">Transition from high over low to high diversity<p>
+		      </section>
+		    </section>
+
+		      
+		    <section>
+		      <h2>What is the <span class="fragment highlight-blue">impact</span> on <br><span class="fragment highlight-green">ocean forests</span><br> and their<br> <span class="fragment highlight-red">biodiversity</span></h2>
+		    </section>
+
+		    <section data-background="figures/IMG_7727.JPG">
+		    </section>
+		    
+		    <section>
+
+
+
+		      <section>
+			<h5>Additional slides</h5>
+			
+		      </section>
+
+			<iframe width="100%" height="100%"
+			src="https://www.youtube.com/embed/HGMvPqfcDOk"
+			frameborder="0" allow="accelerometer;
+			autoplay; encrypted-media; gyroscope;
+			picture-in-picture" allowfullscreen></iframe>
+		      </section>
+
+		      <section>
+			<h5>Ecological Niche Modeling to predict future distribution</h5>
+			<img width="75%" height="auto" src="figures/ENM2.png">
+		      </section>
+		      
+		      <section>
+			<h5>Common garden heat stress experiments</h5>
+			<img width="70%" height="auto" src="figures/CommonGarden.png">
+		      </section>
+		      
+		      <section>
+			<h5>Common garden heat stress experiments</h5>
+			<img width="70%" height="auto" src="figures/CommonGarden2.png">
+		      </section>
+
+		      <section>
+			<h5>Photosynthetic performance</h5>
+			<img width="70%" height="auto" src="figures/CommonGarden3.png">
+			<p class="authors">Jueterbock et al. (2014); <i>Marine Genomics</i></p>
+		      </section>
+
+		      <section>
+			<h5>Heat stress response</h5>
+			<img width="70%" height="auto" src="figures/CommonGarden4.png">
+			<p class="authors">Jueterbock et al. (2014); <i>Marine Genomics</i></p>
+		      </section>
+
+
+		      <section>
+		      	<h5>...density and productivity.</h5>
+		      	<p>in <i>Zostera marina</i></p>
+		      	<img width="57%" height="auto" src="figures/Reynolds2012PlosOne.png.png">
+		      	<!-- <img id="fucus2" width="8%" height="auto" src="figures/seagrass8.png"> -->
+		      	<!-- <p class="authors" id="fucus3"><i>Zostera marina</i></p> -->
+		      	<p class="authors">Reynolds et al. (2012); <i>PLOS ONE</i></p>
+		      	<!-- This suggests enhanced restoration success in genetically diverse meadows -->
+		      </section>
+
+
+
+
+
+
+		      <section>
+			<h5>Warming stimulates growth in northern populations</h5>
+			<img width="50%" height="auto" src="figures/NuriaMarbaFig5.png">
+			<img id="fucus5" width="20%" height="auto" src="figures/IMG_1503_r.JPG">
+			<p class="authors" id="fucus4"><i>Ascophyllum nodosum</i></p>
+			<p class="authors">Marba et al. (2017); <i>Ambio</i></p>
+			<!-- Such north-shouth gradient is observed in a similar way also for other macrophtyes, including seagrass -->
+		      </section>
+
+				      
+		      <section>
+			<h5>Poleward range extension of <i>Laminaria hyperborea</i></h5>
+			<img width="100%" height="auto" src="figures/LaminariaHyperborea.png">
+			<p class="authors">Müller et al. (2009); <i>Botanica Marina</i></p>
+		      </section>
+
+
+		      
+		      <section data-background="figures/IMG_4532_r.JPG">
+			<h4 class="titlebg">Kelp</h4>
+		      </section>
+
+		      <section data-background="figures/home-bg1.jpg" data-state="seagrass">
+			<style>.seagrass header:after { content: "Galice Hoarau"; }</style>
+			<h2 class="titlebg">Seagrass</h2>
+		      </section>
+		      
+		      
+		      <section>
+		      	<h5>Temporal stability of genetic diversity</h5>
+		      	<div id="left50">
+		      	  <img width="70%" height="auto" src="figures/Jueterbock2018Alpha.png">
+		      	  <p class="authors">Jueterbock et al. (2018); <i>BMC Evolutionary Biology</i></p>
+		      	</div>
+		      	<div id="right50">
+		      	  <img width="100%" height="auto" src="figures/Becheler2014Alpha.png">
+		      	  <p class="authors">Becheler et al. (2014); <i>Heredity</i></p>
+		      	</div>
+		      </section>
+		      
+		      
+		      
+		      <section>
+		        <h3>Temperature tolerance of a population</h3>
+		        <img width="70%" height="auto" src="figures/Garrison-2010-Fig16_2.png">
+		        <p class="authors">Garrison (2010); Oceanography</p>
+		        <small class="fragment highlight-red">What impact do we expect from this knowledge?</small>
+		      </section>
+		      
+		      
+		      <section>
+		        <h3>Impact of climate change</h3>
+		        <img width="80%" height="auto" src="figures/Davis-2001-Fig5_1.png">
+		        <p class="authors">Davis & Shaw (2001); Science</p>
+		      </section>
+		      
+		      <section>
+		        <h3>Intertidal species are particularly sensitive</h3>
+		        <img width="70%" height="auto" src="figures/IntertidalSpecies_r.png">
+		        <p>Why are seaweeds ideal organisms to study climate change impact?</p>
+		      </section>
+		      
+		     
+		      <!-- Fraser, M. W., Kendrick, G. A., Statton, J., -->
+		      <!-- Hovey, R. K., Zavala-Perez, A., and Walker, -->
+		      <!-- D. I. (2014). Extreme climate events lower -->
+		      <!-- resilience of foundation seagrass at edge of -->
+		      <!-- biogeographical range. J. Ecol. 102, -->
+		      <!-- 1528–1536. doi: -->   
+		      
+		      
+		      <!-- Question: Are low diversity populations really unable to adapt (importance of epigenetics) -->
+		      <!-- Question: Colonizationo of Arctic regions: importance of epigenetics and light and biotic interactions. -->
+
+		      <!-- Assis, J., Araújo, M. B., and Serrão, E. A. (2017a). Projected climate changes threaten ancient refugia ofkelp forests in the North Atlantic. Glob. Chang. Biol. 24, e55–e66 doi: 10.1111/gcb.13818 -->
+
+
+		    </section>
+
+		    
+		    
+
+
+		    
+		    
+		    
+
+		    
+		    <!-- /home/alj/Dropbox/Presentations/2019NORDTrialLecture/reveal.js/figures/Garrison-2010-Fig16_2.png -->
+		    
+		  </div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -108,6 +818,7 @@
 			{ src: 'plugin/markdown/marked.js' },
 			{ src: 'plugin/markdown/markdown.js' },
 			{ src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/zoom-js/zoom.js', async: true },
 			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 			]
 			});

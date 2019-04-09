@@ -1,0 +1,577 @@
+# With this skript I intend to analyze whether there is a significant
+#  difference between the populations in the control (absolute gene
+#  expression) samples and between the two stress temperatures (28°C
+#  and 32°C)
+
+error.bar <- function(x, y, upper, lower=upper, length=0.05,...){
+        if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+        stop("vectors must be same length")
+        arrows(x,upper, x, lower, angle=90, code=3, length=length, ...)
+        }
+
+
+error.bar2 <- function(x, y, upper, lower=upper, length=0.05,...){
+        if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+        stop("vectors must be same length")
+        arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, ...)
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####################################################################
+#####################################################################
+########## Absolute expression of control samples ###################
+#####################################################################
+#####################################################################
+library("nparLD")
+
+Alldata32 <- read.table("/home/alj/Documents/org_files/data/ScientificJournal/2012ScientificJournal/Dec/2012-12-18-Fs_32_NormalizedAmount_OutliersRemoved.txt",header=TRUE)
+
+Alldata28 <- read.table("/home/alj/Documents/org_files/data/ScientificJournal/2012ScientificJournal/Dec/2012-12-18-Fs_28_NormalizedAmount_OutliersRemoved.txt",header=TRUE)
+
+library(vegan)
+
+# Remove all data with FoldChange==NA
+# At this step I decide whether to take AllOutliersRemoved or AllBoxplotOutliersRemoved
+FT32All <- as.data.frame(as.matrix(Alldata32[is.na(Alldata32$NormalizedAmount)!=TRUE,]))
+Data32.2 <- tapply(FT32All$MeanCT,list(FT32All$Gene,FT32All$Population,FT32All$Treatment),length)
+
+FT28All <- as.data.frame(as.matrix(Alldata28[is.na(Alldata28$NormalizedAmount)!=TRUE,]))
+Data28.2 <- tapply(FT28All$MeanCT,list(FT28All$Gene,FT28All$Population,FT28All$Treatment),length)
+
+
+############################################################################
+############### Statistical analysis #######################################
+############################################################################
+
+# Do the analysis for the 32°C and the 28°C stress experiment and put
+# the results for the three Hsps in a list.
+
+
+FT <- rbind(FT28All,FT32All)
+# Combine the stress data
+FT$NormalizedAmount=as.numeric(as.vector(FT$NormalizedAmount))
+FT$Population=as.factor(FT$Population)
+FT$Treatment=as.factor(FT$Treatment)
+################### HSP70
+
+HSP70Compare <- subset(FT,FT$Gene=="HSP70")
+HSP90Compare <- subset(FT,FT$Gene=="HSP90")
+sHSPCompare <- subset(FT,FT$Gene=="sHSP")
+
+HSPs <- c("HSP70Compare","HSP90Compare","sHSPCompare")
+
+Meanslist28 <- vector("list",length(HSPs))
+SElist28upper <- vector("list",length(HSPs))
+SElist28lower <- vector("list",length(HSPs))
+significancelist28 <- vector("list",length(HSPs))
+Meanslist32 <- vector("list",length(HSPs))
+SElist32upper <- vector("list",length(HSPs))
+SElist32lower <- vector("list",length(HSPs))
+significancelist32 <- vector("list",length(HSPs))
+
+#########################################
+######### Log transformation and ANOVA ##
+#########################################
+library("lawstat") # Provides the levene test to test for heteroscedasticity
+
+# The sHSP expression in the control samples from Spain (28°C) are
+# higher than for the other populations. I want to see if a
+# transformation of the data, followed by a normal ANOVA indicates
+# here a significant difference, since the PERMANOVA analysis does
+# not. I tested it and a log-transformation gives a statistical
+# significance if I apply an ANOVA on it.
+
+# I regard the normal ANOVA analysis only to be problematic when there
+# is an indication for non-normality or heteroscedasticity with a p-value<0.01
+
+# I do log-transformation only when necessary and then back-transform the data with exp(result)
+
+# Here I can change which gene shall be analyzed
+l=1
+###########
+### HSP 70
+###########
+
+d <- get(HSPs[l])
+Hs.Pop0 <- subset(d,d$Treatment==0,drop=TRUE)
+
+# 28°C
+shapiro.test(log(Hs.Pop0$NormalizedAmount))
+levene.test(log(Hs.Pop0$NormalizedAmount),Hs.Pop0$Population)
+# log-transformation necessary!
+model <- aov(log(Hs.Pop0$NormalizedAmount) ~ Hs.Pop0$Population*Hs.Pop0$Temperature)
+summary(model)
+significances <- TukeyHSD(model)[[3]][,4]
+
+
+significancesTrue <- significances<0.05
+names(significancesTrue) <- c("28F-28D",
+                              "28N-28D",
+                              "28S-28D",
+                              "32D-28D",
+                              "32F-28D",
+                              "32N-28D",
+                              "32S-28D",
+                              "28N-28F",
+                              "28S-28F",
+                              "32D-28F",
+                              "32F-28F",
+                              "32N-28F",
+                              "32S-28F",
+                              "28S-28N",
+                              "32D-28N",
+                              "32F-28N",
+                              "32N-28N",
+                              "32S-28N",
+                              "32D-28S",
+                              "32F-28S",
+                              "32N-28S",
+                              "32S-28S",
+                              "32F-32D",
+                              "32N-32D",
+                              "32S-32D",
+                              "32N-32F",
+                              "32S-32F",
+                              "32S-32N")
+library("multcompView")
+Comparisons <- c("28N","28D","28F","28S","32N","32D","32F","32S")
+Letters <- multcompLetters(significancesTrue)$Letters[match(c("28N","28D","28F","28S","32N","32D","32F","32S"),names(multcompLetters(significancesTrue)$Letters))]
+
+
+# Calculating the Means and SEs
+
+d28 <- d[d$Temperature==28,]
+d32 <- d[d$Temperature==32,]
+
+
+d28.Means <- as.matrix(tapply(as.numeric(as.vector(log(d28$NormalizedAmount))),list(as.factor(as.vector(d28$Population)),as.vector(d28$Treatment)),mean))
+d28.Means <- as.matrix(rbind(d28.Means[3,c(1,2,4,3)],d28.Means[1,c(1,2,4,3)],d28.Means[2,c(1,2,4,3)],d28.Means[4,c(1,2,4,3)]))
+rownames(d28.Means) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+d28.Means2 <- d28.Means
+d28.Means <- exp(d28.Means)
+
+Meanslist28[[l]] <- d28.Means
+
+library(plotrix)
+
+d28.SEs <- tapply(as.numeric(as.vector(log(d28$NormalizedAmount))),list(as.factor(as.vector(d28$Population)),as.vector(d28$Treatment)),std.error)
+d28.SEs <- as.matrix(rbind(d28.SEs[3,c(1,2,4,3)],d28.SEs[1,c(1,2,4,3)],d28.SEs[2,c(1,2,4,3)],d28.SEs[4,c(1,2,4,3)]))
+rownames(d28.SEs) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+
+d28.UpperSEs <- exp(d28.Means2+d28.SEs)
+d28.LowerSEs <- exp(d28.Means2-d28.SEs)
+
+SElist28upper[[l]] <- d28.UpperSEs
+SElist28lower[[l]] <- d28.LowerSEs
+
+
+d32.Means <- as.matrix(tapply(as.numeric(as.vector(log(d32$NormalizedAmount))),list(as.factor(as.vector(d32$Population)),as.vector(d32$Treatment)),mean))
+d32.Means <- as.matrix(rbind(d32.Means[3,c(1,2,4,3)],d32.Means[1,c(1,2,4,3)],d32.Means[2,c(1,2,4,3)],d32.Means[4,c(1,2,4,3)]))
+rownames(d32.Means) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+d32.Means2 <- d32.Means
+d32.Means <- exp(d32.Means)
+
+Meanslist32[[l]] <- d32.Means
+
+library(plotrix)
+
+d32.SEs <- tapply(as.numeric(as.vector(log(d32$NormalizedAmount))),list(as.factor(as.vector(d32$Population)),as.vector(d32$Treatment)),std.error)
+d32.SEs <- as.matrix(rbind(d32.SEs[3,c(1,2,4,3)],d32.SEs[1,c(1,2,4,3)],d32.SEs[2,c(1,2,4,3)],d32.SEs[4,c(1,2,4,3)]))
+rownames(d32.SEs) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+
+d32.UpperSEs <- exp(d32.Means2+d32.SEs)
+d32.LowerSEs <- exp(d32.Means2-d32.SEs)
+
+SElist32upper[[l]] <- d32.UpperSEs
+SElist32lower[[l]] <- d32.LowerSEs
+
+
+significancelist28[[l]] <-  Letters[1:4]
+significancelist32[[l]] <-  Letters[5:8]
+
+
+
+
+# Here I can change which gene shall be analyzed
+l=2
+###########
+### HSP 90
+###########
+
+d <- get(HSPs[l])
+Hs.Pop0 <- subset(d,d$Treatment==0,drop=TRUE)
+
+shapiro.test(log(Hs.Pop0$NormalizedAmount))
+levene.test(log(Hs.Pop0$NormalizedAmount),Hs.Pop0$Population)
+# log-transformation necessary!
+model <- aov(log(Hs.Pop0$NormalizedAmount) ~ Hs.Pop0$Population*Hs.Pop0$Temperature)
+summary(model)
+significances <- TukeyHSD(model)[[3]][,4]
+
+
+significancesTrue <- significances<0.05
+names(significancesTrue) <- c("28F-28D",
+                              "28N-28D",
+                              "28S-28D",
+                              "32D-28D",
+                              "32F-28D",
+                              "32N-28D",
+                              "32S-28D",
+                              "28N-28F",
+                              "28S-28F",
+                              "32D-28F",
+                              "32F-28F",
+                              "32N-28F",
+                              "32S-28F",
+                              "28S-28N",
+                              "32D-28N",
+                              "32F-28N",
+                              "32N-28N",
+                              "32S-28N",
+                              "32D-28S",
+                              "32F-28S",
+                              "32N-28S",
+                              "32S-28S",
+                              "32F-32D",
+                              "32N-32D",
+                              "32S-32D",
+                              "32N-32F",
+                              "32S-32F",
+                              "32S-32N")
+library("multcompView")
+Comparisons <- c("28N","28D","28F","28S","32N","32D","32F","32S")
+Letters <- multcompLetters(significancesTrue)$Letters[match(c("28N","28D","28F","28S","32N","32D","32F","32S"),names(multcompLetters(significancesTrue)$Letters))]
+
+
+# Calculating the Means and SEs
+
+d28 <- d[d$Temperature==28,]
+d32 <- d[d$Temperature==32,]
+
+
+d28.Means <- as.matrix(tapply(as.numeric(as.vector(log(d28$NormalizedAmount))),list(as.factor(as.vector(d28$Population)),as.vector(d28$Treatment)),mean))
+d28.Means <- as.matrix(rbind(d28.Means[3,c(1,2,4,3)],d28.Means[1,c(1,2,4,3)],d28.Means[2,c(1,2,4,3)],d28.Means[4,c(1,2,4,3)]))
+rownames(d28.Means) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+d28.Means2 <- d28.Means
+d28.Means <- exp(d28.Means)
+
+Meanslist28[[l]] <- d28.Means
+
+library(plotrix)
+
+d28.SEs <- tapply(as.numeric(as.vector(log(d28$NormalizedAmount))),list(as.factor(as.vector(d28$Population)),as.vector(d28$Treatment)),std.error)
+d28.SEs <- as.matrix(rbind(d28.SEs[3,c(1,2,4,3)],d28.SEs[1,c(1,2,4,3)],d28.SEs[2,c(1,2,4,3)],d28.SEs[4,c(1,2,4,3)]))
+rownames(d28.SEs) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+
+d28.UpperSEs <- exp(d28.Means2+d28.SEs)
+d28.LowerSEs <- exp(d28.Means2-d28.SEs)
+
+SElist28upper[[l]] <- d28.UpperSEs
+SElist28lower[[l]] <- d28.LowerSEs
+
+
+d32.Means <- as.matrix(tapply(as.numeric(as.vector(log(d32$NormalizedAmount))),list(as.factor(as.vector(d32$Population)),as.vector(d32$Treatment)),mean))
+d32.Means <- as.matrix(rbind(d32.Means[3,c(1,2,4,3)],d32.Means[1,c(1,2,4,3)],d32.Means[2,c(1,2,4,3)],d32.Means[4,c(1,2,4,3)]))
+rownames(d32.Means) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+d32.Means2 <- d32.Means
+d32.Means <- exp(d32.Means)
+
+Meanslist32[[l]] <- d32.Means
+
+library(plotrix)
+
+d32.SEs <- tapply(as.numeric(as.vector(log(d32$NormalizedAmount))),list(as.factor(as.vector(d32$Population)),as.vector(d32$Treatment)),std.error)
+d32.SEs <- as.matrix(rbind(d32.SEs[3,c(1,2,4,3)],d32.SEs[1,c(1,2,4,3)],d32.SEs[2,c(1,2,4,3)],d32.SEs[4,c(1,2,4,3)]))
+rownames(d32.SEs) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+
+d32.UpperSEs <- exp(d32.Means2+d32.SEs)
+d32.LowerSEs <- exp(d32.Means2-d32.SEs)
+
+SElist32upper[[l]] <- d32.UpperSEs
+SElist32lower[[l]] <- d32.LowerSEs
+
+
+significancelist28[[l]] <-  Letters[1:4]
+significancelist32[[l]] <-  Letters[5:8]
+
+
+
+# Here I can change which gene shall be analyzed
+l=3
+###########
+### sHSP
+###########
+
+d <- get(HSPs[l])
+Hs.Pop0 <- subset(d,d$Treatment==0,drop=TRUE)
+
+shapiro.test(log(Hs.Pop0$NormalizedAmount))
+levene.test(log(Hs.Pop0$NormalizedAmount),Hs.Pop0$Population)
+# log-transformation necessary!
+model <- aov(log(Hs.Pop0$NormalizedAmount) ~ Hs.Pop0$Population*Hs.Pop0$Temperature)
+summary(model)
+significances <- TukeyHSD(model)[[3]][,4]
+
+
+significancesTrue <- significances<0.05
+names(significancesTrue) <- c("28F-28D",
+                              "28N-28D",
+                              "28S-28D",
+                              "32D-28D",
+                              "32F-28D",
+                              "32N-28D",
+                              "32S-28D",
+                              "28N-28F",
+                              "28S-28F",
+                              "32D-28F",
+                              "32F-28F",
+                              "32N-28F",
+                              "32S-28F",
+                              "28S-28N",
+                              "32D-28N",
+                              "32F-28N",
+                              "32N-28N",
+                              "32S-28N",
+                              "32D-28S",
+                              "32F-28S",
+                              "32N-28S",
+                              "32S-28S",
+                              "32F-32D",
+                              "32N-32D",
+                              "32S-32D",
+                              "32N-32F",
+                              "32S-32F",
+                              "32S-32N")
+library("multcompView")
+Comparisons <- c("28N","28D","28F","28S","32N","32D","32F","32S")
+Letters <- multcompLetters(significancesTrue)$Letters[match(c("28N","28D","28F","28S","32N","32D","32F","32S"),names(multcompLetters(significancesTrue)$Letters))]
+
+
+# Calculating the Means and SEs
+
+d28 <- d[d$Temperature==28,]
+d32 <- d[d$Temperature==32,]
+
+
+d28.Means <- as.matrix(tapply(as.numeric(as.vector(log(d28$NormalizedAmount))),list(as.factor(as.vector(d28$Population)),as.vector(d28$Treatment)),mean))
+d28.Means <- as.matrix(rbind(d28.Means[3,c(1,2,4,3)],d28.Means[1,c(1,2,4,3)],d28.Means[2,c(1,2,4,3)],d28.Means[4,c(1,2,4,3)]))
+rownames(d28.Means) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+d28.Means2 <- d28.Means
+d28.Means <- exp(d28.Means)
+
+Meanslist28[[l]] <- d28.Means
+
+library(plotrix)
+
+d28.SEs <- tapply(as.numeric(as.vector(log(d28$NormalizedAmount))),list(as.factor(as.vector(d28$Population)),as.vector(d28$Treatment)),std.error)
+d28.SEs <- as.matrix(rbind(d28.SEs[3,c(1,2,4,3)],d28.SEs[1,c(1,2,4,3)],d28.SEs[2,c(1,2,4,3)],d28.SEs[4,c(1,2,4,3)]))
+rownames(d28.SEs) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+
+d28.UpperSEs <- exp(d28.Means2+d28.SEs)
+d28.LowerSEs <- exp(d28.Means2-d28.SEs)
+
+SElist28upper[[l]] <- d28.UpperSEs
+SElist28lower[[l]] <- d28.LowerSEs
+
+
+d32.Means <- as.matrix(tapply(as.numeric(as.vector(log(d32$NormalizedAmount))),list(as.factor(as.vector(d32$Population)),as.vector(d32$Treatment)),mean))
+d32.Means <- as.matrix(rbind(d32.Means[3,c(1,2,4,3)],d32.Means[1,c(1,2,4,3)],d32.Means[2,c(1,2,4,3)],d32.Means[4,c(1,2,4,3)]))
+rownames(d32.Means) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+d32.Means2 <- d32.Means
+d32.Means <- exp(d32.Means)
+
+Meanslist32[[l]] <- d32.Means
+
+library(plotrix)
+
+d32.SEs <- tapply(as.numeric(as.vector(log(d32$NormalizedAmount))),list(as.factor(as.vector(d32$Population)),as.vector(d32$Treatment)),std.error)
+d32.SEs <- as.matrix(rbind(d32.SEs[3,c(1,2,4,3)],d32.SEs[1,c(1,2,4,3)],d32.SEs[2,c(1,2,4,3)],d32.SEs[4,c(1,2,4,3)]))
+rownames(d32.SEs) <- c("Norway","Denmark","France","Spain")
+#Back-transformation
+
+d32.UpperSEs <- exp(d32.Means2+d32.SEs)
+d32.LowerSEs <- exp(d32.Means2-d32.SEs)
+
+SElist32upper[[l]] <- d32.UpperSEs
+SElist32lower[[l]] <- d32.LowerSEs
+
+
+significancelist28[[l]] <-  Letters[1:4]
+significancelist32[[l]] <-  Letters[5:8]
+
+
+
+
+
+
+names(Meanslist28) <- HSPs
+names(SElist28upper) <- HSPs
+names(SElist28lower) <- HSPs
+names(significancelist28) <- HSPs
+names(Meanslist32) <- HSPs
+names(SElist32upper) <- HSPs
+names(SElist32lower) <- HSPs
+names(significancelist32) <- HSPs
+
+
+AbsMeanslist28 <- Meanslist28
+AbsSElist28upper <- SElist28upper
+AbsSElist28lower <- SElist28lower
+Abssignificancelist28 <- significancelist28
+
+
+AbsMeanslist32 <- Meanslist32
+AbsSElist32upper <- SElist32upper
+AbsSElist32lower <- SElist32lower
+Abssignificancelist32 <- significancelist32
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+error.bar <- function(x, y, upper, lower=upper, length=0.05,...){
+        if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+        stop("vectors must be same length")
+        arrows(x,upper, x, lower, angle=90, code=3, length=length, ...)
+        }
+
+
+error.bar2 <- function(x, y, upper, lower=upper, length=0.05,...){
+        if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+        stop("vectors must be same length")
+        arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, ...)
+        }
+
+
+
+
+######################################################
+############# Plotting ###############################
+######################################################
+
+cnorway <- "#fdfdfd"
+cdenmark <- "#808080"
+cfrance <- "#dfdfdf"
+cspain <- "#202020"
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################
+############# Plotting ###############################
+######################################################
+
+
+########## Plot for Control levels
+png(filename="/home/alj/Documents/writing/2012HSR/2012HeatShockResponse/Audioslides/images/Controls_Comparisons.png",width=100,height=110,units='mm',res=100,pointsize=10)
+par(xpd=NA,mar=c(0,0,3,0),oma=c(4,6,0,0),mgp=c(4,2,1),font=1,ps=10,mfrow=c(2,1))
+
+
+
+# 28°C stress absolute control values
+Means28 <- cbind(AbsMeanslist28$HSP70Compare[,1],AbsMeanslist28$HSP90Compare[,1],AbsMeanslist28$sHSPCompare[,1])
+SEs28upper <- cbind(AbsSElist28upper$HSP70Compare[,1],AbsSElist28upper$HSP90Compare[,1],AbsSElist28upper$sHSPCompare[,1])
+SEs28lower <- cbind(AbsSElist28lower$HSP70Compare[,1],AbsSElist28lower$HSP90Compare[,1],AbsSElist28lower$sHSPCompare[,1])
+significance28 <- c(Abssignificancelist28$HSP70Compare,Abssignificancelist28$HSP90Compare,Abssignificancelist28$sHSPCompare)
+                    
+barx <- barplot(Means28[,3], beside=TRUE,col=c(rgb(51,102,0,maxColorValue=255),rgb(255,221,17,maxColorValue=255),rgb(102,51,153,maxColorValue=255),rgb(51,221,238,maxColorValue=255)),border="white", ylim=c(0.001,10),axis.lty=1,lwd=1,cex.main=1,cex.lab=1,cex.axis=1,las=1,cex.names=1,cex.main=1.2,log="y",axes=FALSE,main="Control after 23 weeks of acclimation",names.arg="",xaxt="n")
+axis(2, at=c(0.001,0.01,0.1,1,10),labels=as.character(c(0.001,0.01,0.1,1,10)),las=1)
+
+lines(x=c(5.5,5.5),y=c(0.001,10000000),lty=2)
+lines(x=c(10.5,10.5),y=c(0.001,10000000),lty=2)
+error.bar(barx,Means28[,3],upper=SEs28upper[,3],lower=SEs28lower[,3],lwd=1)
+
+distances <- Means28[,3]+3
+
+text(barx,distances,significance28[9:12],cex=1)
+
+
+# 32°C stress absolute control values
+Means32 <- cbind(AbsMeanslist32$HSP70Compare[,1],AbsMeanslist32$HSP90Compare[,1],AbsMeanslist32$sHSPCompare[,1])
+SEs32upper <- cbind(AbsSElist32upper$HSP70Compare[,1],AbsSElist32upper$HSP90Compare[,1],AbsSElist32upper$sHSPCompare[,1])
+SEs32lower <- cbind(AbsSElist32lower$HSP70Compare[,1],AbsSElist32lower$HSP90Compare[,1],AbsSElist32lower$sHSPCompare[,1])
+significance32 <- c(Abssignificancelist32$HSP70Compare,Abssignificancelist32$HSP90Compare,Abssignificancelist32$sHSPCompare)
+                    
+barx <- barplot(Means32[,3], beside=TRUE,col=c(rgb(51,102,0,maxColorValue=255),rgb(255,221,17,maxColorValue=255),rgb(102,51,153,maxColorValue=255),rgb(51,221,238,maxColorValue=255)),border="white", ylim=c(0.001,10),axis.lty=1,xaxt="n",lwd=1,cex.main=1,cex.lab=1,cex.axis=1,las=1,cex.names=1,cex.main=1.2,log="y",axes=FALSE,main="Control after 7 weeks of acclimation")
+axis(2, at=c(0.001,0.01,0.1,1,10),labels=as.character(c(0.001,0.01,0.1,1,10)),las=1)
+
+
+error.bar(barx,Means32[,3],upper=SEs32upper[,3],lower=SEs32lower[,3],lwd=1)
+
+distances <- Means32[,3]+3
+
+text(barx,distances,significance32[9:12],cex=1)
+
+legend(x=2, y =.0001, legend=c("Norway","Denmark","Brittany","Spain"),fill=c(rgb(51,102,0,maxColorValue=255),rgb(255,221,17,maxColorValue=255),rgb(102,51,153,maxColorValue=255),rgb(51,221,238,maxColorValue=255)),border="white",title="",bty = "n", xjust = 0.5, yjust = 0.5, ncol=4)
+
+mtext(side = 2, text = "Normalized expression quantity", line = 4.5, ps=10,outer=TRUE,cex=1.4,at=0.45)
+#mtext(side = 1, text = "HSP gene", line = 4, ps=10,outer=TRUE,cex=1)
+
+
+dev.off()
+dev.off(dev.prev())
+
+
+
+
+
+
+
+
+
+

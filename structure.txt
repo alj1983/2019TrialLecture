@@ -1,6 +1,8 @@
 40 slides for 45 minutes talk
 
 
+The seagrasses come into play where the low genetic diversity is of importance.
+
 First show macroalgae and seagrass (what they are) and their ecosystem services
 - Differences between seagrass and seaweed https://www.google.com/search?q=what+are+the+differences+between+seagrass+and+seaweed&client=ubuntu&hs=evo&channel=fs&source=lnms&tbm=isch&sa=X&ved=0ahUKEwicgoO32LThAhU6wcQBHauqCFUQ_AUIDigB&biw=1175&bih=591#imgrc=BhoTgr-HtMkf1M:
 - What's the value of kelp forests and eelgrass beds in the North? http://norden.diva-portal.org/smash/record.jsf?fbclid=IwAR14A3v7PUQ6KjbbbDZiub9B5gfG90rxhKXLscFGfZ49sillj7ACGbVpXNA&pid=diva2%3A1067839&dswid=155
@@ -24,6 +26,8 @@ Northward range shift recordings
 
 
 How does the community change?
+- IMportant is that due to the key ecological role of marine macrophytes, when they shift in distribution, the entire associated community shifts in distribution.
+
 
 What does that mean for the genetic composition (climate change refugia with high genetic diversity disappear)
 

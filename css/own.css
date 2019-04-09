@@ -2,9 +2,26 @@ html.dimbg .slide-background {
 	opacity: 0.5 !important;
 }
 
-#titlebg {
-background-color:rgb(119,136,153,0.6)}
+.titlebg {
+background-color:rgb(119,136,153,0.7)}
 
+#fucus { position: absolute; top: 20%; right:10%; }
+#fucus2 { position: absolute; top: 15%; right:3%; }
+#fucus3 { position: absolute; top: 35%; right:3%; }
+#fucus4 { position: absolute; top: 45%; right:3%; }
+#fucus5 { position: absolute; top: 20%; right:3%; }
+#zostera { position: absolute; top: 31%; left:11%; }
+#zostera2{ position: absolute; top: 15%; right:1%; }
+
+#spain { position: absolute; top: 10%; right:0%; }
+.credits{     font-size: 50% !important;
+	      position: absolute; bottom: 15%; left:15%;
+	      color:#ffffff
+	}
+
+.leftalign{
+    text-align:left;
+}
 
 .caption{
 position: absolute;
@@ -12,3 +29,69 @@ bottom: 0px;
 right: 0px;
 }
 
+/* for two-column layout */
+
+#left60 {
+  left:-8.33%;
+  text-align: left;
+  float: left;
+  width:60%;
+  z-index:-10;
+}
+
+#right40 {
+  left:10%;
+  top: 75px;
+  float: right;
+  text-align: left;
+  z-index:-10;
+  width:40%;
+}
+
+#left80 {
+  left:-8.33%;
+  text-align: centered;
+  float: left;
+  width:80%;
+  z-index:-10;
+}
+
+#right20 {
+  left:10%;
+  top: 75px;
+  float: right;
+  text-align: left;
+  z-index:-10;
+  width:20%;
+}
+
+
+#left50 {
+  left:-8.33%;
+  text-align: centered;
+  float: left;
+  width:50%;
+  z-index:-10;
+}
+
+#right50 {
+  left:10%;
+  top: 75px;
+  float: right;
+  text-align: centered;
+  z-index:-10;
+  width:50%;
+}
+
+/* remove capitalization in headers */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+        text-transform: none;
+    }
+
+.authors{
+    font-size: 50% !important;
+}
+
+.smaller{
+    font-size: 70% !important;
+}
