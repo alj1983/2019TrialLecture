@@ -3,16 +3,32 @@ html.dimbg .slide-background {
 }
 
 .titlebg {
-background-color:rgb(119,136,153,0.7)}
+    color: #ffffff !important;
+    background-color: rgba(0,0,0,0.5)}
 
 #fucus { position: absolute; top: 20%; right:10%; }
 #fucus2 { position: absolute; top: 15%; right:3%; }
 #fucus3 { position: absolute; top: 35%; right:3%; }
 #fucus4 { position: absolute; top: 45%; right:3%; }
 #fucus5 { position: absolute; top: 20%; right:3%; }
-#zostera { position: absolute; top: 31%; left:11%; }
+#zostera { position: absolute; top: 27%; left:11%; }
 #zostera2{ position: absolute; top: 15%; right:1%; }
 #seagrass{ position: absolute; top: 8%; right:23%; }
+.leftwriting{ 
+    position: absolute; 
+    bottom: 3%; 
+    left:3%; 
+    text-align:left;
+    font-size:50% !important;
+}
+
+.upperright{ 
+    position: absolute; 
+    top: 18%; 
+    right:26%; 
+    text-align:left;
+    font-size:50% !important;
+}
 
 #spain { position: absolute; top: 10%; right:0%; }
 .credits{     font-size: 50% !important;
@@ -95,5 +111,10 @@ right: 0px;
 
 .smaller{
     font-size: 70% !important;
+}
+
+
+.halfsize{
+    font-size: 50% !important;
 }
 
