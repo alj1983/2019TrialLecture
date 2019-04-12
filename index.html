@@ -35,23 +35,27 @@
 	</head>
 	<body>
 	  <div class="reveal">
-	    <header style="position: absolute;bottom: 20px; left:30px; z-index:500; font-size:30px; color: #ffffff; background-color: rgba(0,0,0,0.3)"></header>
+	    <header style="position: absolute;bottom: 20px; left:30px; z-index:500; font-size:18px; color: #ffffff; background-color: rgba(0,0,0,0.3)"></header>
 
 	    <!-- absolute positioning of text on the page from https://www.raymondcamden.com/2014/04/01/Adding-an-Absolutely-Positioned-Header-to-Revealjs -->
 		  <div class="slides">
 
 
-		    <section>
-			     <!-- data-state="dimbg"> -->
-				  <h2>Climate change impact on <br>ocean forests<br> and their biodiversity</h2>
-				  <h3>Trial lecture 03.05.2019</h3>
-				  <p>
+		    <section data-background="figures/Titlebg.jpg"  data-state="title">
+			<style>.title header:after { content:
+			"Photo: Tiffany Stephens"; }</style>
+		      <!-- data-state="dimbg"> -->
+		      <div class="titlebg">
+				  <h2 class="white">Climate change impact on <br>ocean forests<br> and their biodiversity</h2>
+				  <h3 class="white">Trial lecture 03.05.2019</h3>
+				  <p class="white">
 				    <small>Alexander Jueterbock, Researcher at Nord University</small>
 				  </p>
 
 				  <aside class="notes">
 				    Why do we have fjords in Norway?
 				  </aside>
+		      </div>
 		    </section>
 
 		    <section>
@@ -222,7 +226,8 @@
 		      </section>
 		      
 		      <section>
-			<h3>seaweed (brown macroalgae) vs. seagrass</h3>
+			<h3>Marine macrophytes</h3>
+			<h4>Seaweed (brown macroalgae) vs. seagrass</h4>
 			<img width="60%" height="auto" src="figures/DpKzggJWwAAtz_B.jpg">
 			<p class="authors">https://twitter.com/projectseagrass/status/1050099510326808577</p>
 			<aside class="notes">
@@ -312,14 +317,14 @@ estimated
 		      </section>
 
 		      <section data-background="figures/DSC_1488_new.png" data-state="header4">
-			<style>.header4 header:after { content: "Galice Hoarau"; }</style>
+			<style>.header4 header:after { content: "Photo: Galice Hoarau"; }</style>
 			<h3 class="titlebg">Nutrient fixation</h3>
 		      </section>
 
 		      
 		      <section data-background="figures/PicturesFromChristofferBostroem/Sandskar.jpg" data-state="header2">
 			<style>.header2 header:after { content:
-			"Christoffer Boström"; }</style>
+			"Photo: Christoffer Boström"; }</style>
 			<h3 class="titlebg">Protection from erosion</h3>
 			<aside class="notes">
 			  Seagrasses trap sediments and as they can
@@ -333,7 +338,7 @@ estimated
 		      </section>
 
 		      <section data-background="figures/PicturesFromChristofferBostroem/Faro2.jpg" data-state="header3">
-			<style>.header3 header:after { content: "Christoffer Boström"; }</style>
+			<style>.header3 header:after { content: "Poto: Christoffer Boström"; }</style>
 			<h3 class="titlebg">Habitat and food</h3>
 		      </section>
 
@@ -343,7 +348,7 @@ estimated
 			
 			<section data-background="figures/CodInSeagrass.JPG" data-state="header1">
 			  <style>.header1 header:after { content:
-			    "http://zostera.blogspot.com/2010/06/atlantic-cod-and-eelgrass-oh-my.html"; }</style>
+			    "Photo: http://zostera.blogspot.com/2010/06/atlantic-cod-and-eelgrass-oh-my.html"; }</style>
 			  <h3 class="titlebg">Nursery grounds</h3>
 			  <!-- <small class="titlebg">e.g. cod 590 ind/ha <br> -->
 			  <!--   Unsworth et al. (2018); <i>Conservation Letters</i></small> -->
@@ -359,7 +364,7 @@ estimated
 			</section>
 
 		      <section data-background="figures/KelpForest.jpg" data-state="header10">
-			<style>.header10 header:after { content: "Dr. Mark Hixon, Oregon State University"; }</style>
+			<style>.header10 header:after { content: "Figure: Dr. Mark Hixon, Oregon State University"; }</style>
 
 			<aside class="notes">
 			  the assembly and function of a rich wood web
@@ -460,6 +465,14 @@ estimated
 			  <li>pH</li>
 			  <li>Temperature</li>
 			</ul>
+			<aside class="notes">
+			  Salinity increases in some regions and
+			  decreases in others. PH decreases on average
+			  due to the reactions that take place when
+			  CO2 dissolves in ocean water. Hydrogen ions
+			  are released and this makes the water more
+			  acidic.
+			</aside>
 		      </section>
 
 		      <section>
@@ -485,24 +498,36 @@ estimated
 			<img width="49%" height="auto" src="figures/ENMAlgae.png">
 			<p class="authors">Jueterbock et al. (2013,2016); <i>Ecology and Evolution</i></p>
 			<aside class="notes">
-For three of the dominant temperate species and the most dominant
-intertidal species in the arctic, sea surface temperature and surface
-air temperature derivates were the most important factors.
+                        For three of the dominant temperate species
+			and the most dominant intertidal species in
+			the arctic, sea surface temperature and
+			surface air temperature derivates were the
+			most important factors.  This was later
+			confirmed for several other species, including
+			subtidal kelp species and seagrasses.
 			</aside>
 		      </section>
 		      
 		      <section>
-			<h3>Seaweed distribution limited by <br>10°C summer and 20°C winter isotherm</h3>
+			<h3>Seaweed distribution limited by isotherms</h3>
+			<h5>Diversity highest between 10°C summer and 20°C winter isotherm</h5>
 			<img width="70%" height="auto" src="figures/TemperateRegion2_r.png">
 			<aside class="notes">
-			  We can approach this question by looking at
-			  which environmental factor is most important
-			  in setting distribution limits. For seaweed,
-			  it is well known that their distribution is
-			  limited by certain isotherms (line of equal
-			  temperature on a geographic map) to the
-			  north and the south.
-			  What is the limit based on? Reproduction I remember.
+			  Over large spatial scales, the distribution
+			  of seaweeds is generally limited by certain
+			  isotherms (line of equal temperature on a
+			  geographic map) to the north and the
+			  south. This could be lethal temperatures for
+			  adult plants but most often it is the
+			  temperature that does not allow for
+			  successful reproduction or
+			  recruitment. Early life stages are generally
+			  the most sensitive life stage in marine
+			  macrophytes.  Many seaweeds are limited by
+			  the 10°C summer and the 20°C winter
+			  isotherms, which means that this temperate
+			  region is the most diverse in terms of
+			  number of seaweed species.
 			</aside>
 		      </section>
 		      
@@ -512,37 +537,32 @@ air temperature derivates were the most important factors.
 		    
 		     <section>
 		       <section>
-			 <h2>How do rising temperatures affect ocean forests</h2>
+			 <h2>How do rising temperatures affect <br>ocean forests</h2>
 		       </section>
 
-		       
-
-		      <section>
-		        <h3>Temperature tolerance of a population</h3>
-		        <img width="70%" height="auto" src="figures/Garrison-2010-Fig16_2.png">
-		        <p class="authors">Garrison (2010); Oceanography</p>
+		       <section>
+			 <h3>330 km poleward shift of the <br>15°C summer SST isotherm (1985-2000)</h3>
+		        <img width="100%" height="auto" src="figures/McMahon.png">
+		        <p class="authors">McMahon & Hays (2006); <i>Global Change Biology</i></p>
 			<aside class="notes">
 			 Draw at the blackboard what we could expect -
 			Migration, adaptation or extinction - we have
 			a sessile species with relatively low
 			dispersal capacity.
 			</aside>
-		      </section>
+			 
+		       </section>
 
-		      <section>
-		        <h3>Impact of marine heat waves on seagrass and kelp</h3>
-		        <img width="60%" height="auto" src="figures/Smale2019NatureClimateChange.png">
-		        <p class="authors">Smale et al. (2019); <i>Nature Climate Change</i></p>
-			<aside class="notes">
-			</aside>
-		      </section>
 
-		      
 		       
 		       <section>
 			 <h3>Global seaweed loss due to ocean warming</h3>
 			 <img width="100%" height="auto" src="figures/SeaweedLoss.png">
 			 <aside class="notes">
+			   This doesn't give an overview of all
+			   published cases that proof that high
+			   temperatures are killing seaweed habitats,
+			   but it shows that this is a global problem.
 			 </aside>
 		       </section>
 
@@ -551,6 +571,9 @@ air temperature derivates were the most important factors.
 			<h3>Predicted range shifts until year 2200</h3>
 			<img width="85%" height="auto" src="figures/ENMAlgaeResults.png">
 			<p class="authors">Jueterbock et al. (2013,2016); <i>Ecology and Evolution</i></p>
+			<aside class="notes">
+			  Similar predictions exist for subtidal kelp species and also for seagrass.			   
+			</aside>
 		      </section>
 
 		      <section data-state="header5">
@@ -560,6 +583,11 @@ air temperature derivates were the most important factors.
 			<img id="spain" width="20%" height="auto" src="figures/SpainSite.png">
 			<p class="credits">James Coyer</p>
 			<p class="authors">Jueterbock et al. (2013); <i>Ecology and Evolution</i></p>
+			<aside class="notes">
+			  This remain not only predictions but the
+			  disappearance of seaweed from their southern
+			  range of distribution is already happening
+			</aside>
 		      </section>
 
 		      <section>
@@ -577,6 +605,12 @@ air temperature derivates were the most important factors.
 			<p class="authors">Nicastro et al. (2013); <i>BMC Biology</i></p>
 			<img id="fucus2" width="20%" height="auto" src="figures/IMG_1498_r.JPG">
 			<p class="authors" id="fucus3"><i>Fucus vesiculosus</i></p>
+			<aside class="notes">
+			  The complete loss of populations has been
+			  recorded for the intertidal seaweed Fucus
+			  vesiculosus. Its southern distribution limit
+			  shifted 1,250 km northwards within 30 years.
+			</aside>
 		      </section>
 
 
@@ -587,37 +621,69 @@ air temperature derivates were the most important factors.
 			<img width="35%" height="auto" src="figures/Wernberg2016Science.png">
 			<p class="authors">Wernberg et al. (2016), <i>Science</i></p>
 			<aside class="notes">
-			  This loss is correlated with a marine heat wave in 2011
+			  This loss is correlated with a marine heat
+			  wave in 2011. That the percentage of kelp
+			  cover lost increases towards lower latitudes
+			  provides additional proof that this is
+			  related to temperature.
 			</aside>
 		      </section>
 
-		      <section>
-			<h3>Disappearance of a bull kelp forest in northern California</h3>
-			<div id="left50">
-			  <img width="100%" height="auto" src="figures/BullKelp1.jpg">
-		      	</div>
-		      	<div id="right50">
-		      	  <img width="100%" height="auto" src="figures/BullKelp2.jpg">
-		      	</div>
-			<p class="authors">Kevin Joe and Cynthia Catton, California Department of Fish and Wildlife</p>
-		      </section>
+
 
 		      <section>
 			<h3>Ongoing colonization of Arctic regions</h3>
 			<img width="100%" height="auto" src="figures/NorthwardShift.png">
 			<p class="authors">Mueller et al. (2009); <i>Botanica Marina</i></p>
+			<aside class="notes">
+			  There are not yet many published records of
+			  seaweed that have extended their ranges into
+			  polar regions. The only good example that I
+			  could find was for Laminaria
+			  hyperborea. This kelp recently extended its
+			  northern range from northern Norway to
+			  Southern Svalbard, facilitated by the n-ward
+			  shift of the 2°C winter SST
+			  isotherm.
+			</aside>
 		      </section>		     
 
 		      <section>
 			<h3>Dispersal and invasive potential</h3>
 			<img width="100%" height="auto" src="figures/Dispersal.png">
 			<!-- Zostera shoots can remain positively buoyant for ca. 2 weeks, allowing for long-distance dispersal -->
+			<aside class="notes">
+			  Poleward range extension depends on the
+			  ability of the species to disperse and
+			  migrate. Since zygotes generally disperse
+			  less than 10 m from the egg-bearing female,
+			  long-range dispersal thus must involve
+			  drifting thalli of reproductively mature
+			  individuals. Some species have air bladders
+			  that allow them to drift. For the others,
+			  shipping transport will likely play a major
+			  role. As shipping has increased in the
+			  Canadian and Russian Arctic in response to
+			  the loss of Arctic sea ice, it is likely to
+			  play a major role in the introduction of
+			  marine species into polar areas, including
+			  marine macroalgae.
+			</aside>
+
 		      </section>
 
 		      <section>
 			<h3>Extreme polar light conditions</h3>
 			<img width="45%" height="auto" src="figures/Berge.jpg">
 			<p class="authors">Berge et al. (2015); <i>Progress in Oceanography</i></p>
+			<aside class="notes">
+			  But even if species find suitable
+			  temepratures in the Arctic and can migrate
+			  there, whether they can invade the Arctic
+			  depends on whether they can store energy and
+			  nitrogen reserves to survive a 4-month long
+			  polar night during winter.
+			</aside>
 		      </section>
 
 
@@ -629,33 +695,55 @@ air temperature derivates were the most important factors.
 			   <p>Global<br>17% no change<br>25% increase<br>58% decrease</p>
 			 </div>
 			 <aside class="notes">
-			   The rate of loss accelerated from about 1
-			   percent per year (1 football field every
-			   half an hour) before 1940 to 7 percent per
-			   year since 1990 (1 football field every 4
-			   minutes). Reasons besides coastal
-			   development and pollution are rising
-			   temperatures, hitting the meadows in form of heatwaves.
+			   Nearly one-third of global seagrass area
+			   has disappeared over the last 100 years-
+			   this is equivalent to losing a seagrass bed
+			   of a football pitch size every half an
+			   hour. The rate of loss accelerated from
+			   about 1 percent per year (1 football field
+			   every half an hour) before 1940 to 7
+			   percent per year since 1990 (1 football
+			   field every 4 minutes). Reasons besides
+			   coastal development and pollution are
+			   rising temperatures, hitting the meadows in
+			   form of heatwaves.
 			</aside>
 		       </section>
-		     
+
+		       <section>
+		        <h3>Impact of marine heat waves on seagrass and kelp</h3>
+		        <img width="100%" height="auto" src="figures/Smale2019NatureClimateChange2.png">
+		        <p class="authors">Smale et al. (2019); <i>Nature Climate Change</i></p>
+			<aside class="notes">
+			  
+			</aside>
+		      </section>
 
 		      <section>
 			<h3>36% of temperate seagrass damaged after heatwave</h3>
 			<img width="28%" height="auto" src="figures/Murray2018Fig4.png">
 			<p class="authors">Arias-Ortiz et al. (2018); <i>Nature Climate Change</i></p>
 			<aside class="notes">
-			  This is in shark bay and resulted from a heat wave in 2010/2011
+			  This is in shark bay and resulted from a
+			  heat wave in 2010/2011. This destroyed one
+			  of the worlds most important seagrass carbon
+			  stocks.
 			</aside>
 		      </section>
 
 		      <section>
-			<h3>Range shift projections for <i>Zostera noltii</i></h3>
+			<h3>Range shift projections for <i>Zostera noltii</i> until 2100</h3>
 			<!-- <p>Loss of high diversity in the south</p> -->
 			<img width="80%" height="auto" src="figures/ValleZn.png">
 			<img id="zostera" width="7%" height="auto" src="figures/ian-symbol-zostera-noltii.svg">
 			<!-- <p class="authors" id="zostera2"><i>Credits: Tracey Saxby</i></p> -->
 			<p class="authors">Valle et al. (2014); <i>Biological Conservation</i></p>
+			<aside class="notes">
+			 For a seagrass with European distribution, we
+			 have similar range shift projections as for
+			 seaweed - loss of habitat in the southern
+			 range of distribution and gain in the north.
+			</aside>
 		      </section>
 
 
@@ -810,6 +898,13 @@ air temperature derivates were the most important factors.
 			<h3>Increasing diversity in the Arctic</h3>
 			<img width="70%" height="auto" src="figures/KrauseJensen2014FrontMarSci.jpg">
 			<p class="authors">Krause-Jensen & Duarte (2014); <i>Frontiers in Marine Science</i></p>
+			<aside class="notes">
+			  When seagrasses and macroalgae expand
+			  polewards, they bring along many ecosystem
+			  services we have looked at before, and many
+			  traits that support a rich associated fauna
+			  and flora.
+                        </aside>
 		      </section>
 
 
@@ -854,7 +949,7 @@ air temperature derivates were the most important factors.
 
 		       <section data-background="figures/dsc00062.jpg"  data-state="barrens">
 			<style>.barrens header:after { content:
-			"https://www.mn.uio.no/ibv/english/research/sections/aqua/groups/marine-botany/images/hardbunn/?display=gallery"; }</style>
+			"Photo: https://www.mn.uio.no/ibv/english/research/sections/aqua/groups/marine-botany/images/hardbunn/?display=gallery"; }</style>
 			<aside class="notes">
 			  This can lead to sea urchin barrens of low
 			  diversity. Even if ocean acidification has a
@@ -868,59 +963,63 @@ air temperature derivates were the most important factors.
 			 <img width="60%" height="auto" src="figures/Harley2012_2.png">
 			 <p class="authors">Harley et al. (2012), <i>Journal of Phycology</i></p>
 			<aside class="notes">
-			   Even if ocean acidification has a
-			  negative impact on grazers, kelp forests are
-			  not thriving.
+			   Even if ocean acidification has a negative
+			  impact on grazers, kelp forests are not
+			  thriving and suffering from increasing
+			  temperatures.
 			</aside>
 		       </section>
-
-		      <section>
-			<h3>Shifts from kelp forests to sediment-laden turf</h3>
-			<h6>Flattending diversity</h6>
-			<img width="100%" height="auto" src="figures/FilbeeDexter2017.jpg">
-			<p class="authors">Filbee-Dexter & Wernberg
-			  (2017), <i>BioScience</i></p>
-			<aside class="notes">
-			  In contrast to sea urchin barrens, where
-			  kelp can easily re-establish once the
-			  urchins are removed, there are mechanisms in
-			  the turf algae ecosystem that protects from
-			  reestablishment. Turf algae are smaller
-			  algae with densely packed branches and small
-			  filaments that grow fast, and cover the sea
-			  floor like a carpet.
-			</aside> 
-		      </section>
-
-		      <section data-background="figures/Turf.jpg"  data-state="turf">
-			<style>.turf header:after { content:
-			  "Robert Scheibling"; }</style>
-			<aside class="notes">
-			  Turf-covered reefs are
-			  totally lacking the three-dimensional
-			  structure of a kelp forest, where an immense
-			  richness of crustaceans, fish and snails
-			  live and hide.
-			</aside>
-		      </section>
-		      
-
 
 		       <section>
 			 <h3>Heatwave caused shift from kelp forests to seaweed turfs in Western Australia</h3>
 			<img width="80%" height="auto" src="figures/Wernberg2016KelpToTurf.png">
 			<p class="authors">Wernberg et al. (2016), <i>Science</i></p>
 		      </section>
+		       
+		       <section>
+			<h3>Shifts from kelp forests to sediment-laden turf</h3>
+			<h6>Flattending diversity</h6>
+			<img width="100%" height="auto" src="figures/FilbeeDexter2017.jpg">
+			<p class="authors">Filbee-Dexter & Wernberg
+			  (2017), <i>BioScience</i></p>
+			<aside class="notes">
+			  In several regions around the globe,
+			  including Norway, kelp forests are currently
+			  being replaced by turf algae. There are
+			  several drivers for such a regime shift,
+			  including gradual warming, and
+			  heatwaves. Turf algae are smaller algae with
+			  densely packed branches and small filaments
+			  that grow fast, and cover the sea floor like
+			  a carpet.
+			</aside> 
+		      </section>
 
+		      <section data-background="figures/Turf.jpg"  data-state="turf">
+			<style>.turf header:after { content:
+			  "Photo: Robert Scheibling"; }</style>
+			<aside class="notes">
+			  Turf-covered reefs are totally lacking the
+			  three-dimensional structure of a kelp
+			  forest, where an immense richness of
+			  crustaceans, fish and snails live and hide.
+			  In contrast to sea urchin barrens, where
+			  kelp can easily re-establish once the
+			  urchins are removed, there are mechanisms in
+			  the turf algae ecosystem that protects from
+			  reestablishment.
+			</aside>
+		      </section>
+		      
 		      		      
 		      <section>
-			<h3>Poleward shift of herbivorous fishes</h3>
+			<h3>Poleward shift of herbivorous tropical fishes</h3>
 			<img width="100%" height="auto" src="figures/Verges2014Fig2.jpg">
 			<p class="authors">Verges et al. (2014); <i>Proc. R. Soc. B Biol. Sci</i></p>
 			<aside class="notes">
 			  Poleward-flowing boundary currents that are
 			  creating ocean warming hotspots around the
-			  globe, enabling the range expansion of
+			  globe, are enabling the range expansion of
 			  tropical species and increasing their
 			  grazing rates in temperate areas. Increased
 			  grazing by parrotfish war already reported
@@ -993,19 +1092,18 @@ air temperature derivates were the most important factors.
 			Australia)</h3>
 			<img width="100%" height="auto" src="figures/Hyndes2016BioScienceab.png">
 			<p class="authors">Hyndes et al. (2016), <i>BioScience</i></p>
-						<aside class="notes">
-						  Temperate species
-						  rather are grazing
-						  on detrital seagrass
-						  but tropical species
-						  on the leaves directly
+			<aside class="notes">
+			  Temperate species
+			  rather are grazing
+			  on detrital seagrass
+			  but tropical species
+			  on the leaves directly
 			</aside> 
-			
 		      </section>
-
+		      
 		      <section>
 			<h3>Tropicalization of temperate seagrass meadows</h3>
-			<img width="100%" height="auto" src="figures/Hyndes2016BioSciencecd.png">
+			<img width="100%" height="auto" src="figures/Hyndes2016BioSciencecd2.png">
 			<p class="authors">Hyndes et
 			  al. (2016), <i>BioScience</i></p>
 			<aside class="notes">
@@ -1153,7 +1251,7 @@ air temperature derivates were the most important factors.
 		      </section>
 
 		      <section data-background="figures/home-bg1.jpg" data-state="seagrass">
-			<style>.seagrass header:after { content: "Galice Hoarau"; }</style>
+			<style>.seagrass header:after { content: "Photo: Galice Hoarau"; }</style>
 			<h2 class="titlebg">Seagrass</h2>
 		      </section>
 		      
@@ -1314,6 +1412,30 @@ air temperature derivates were the most important factors.
 			  <li>The seagrass <i>Zostera marina</i> grows in salinities ranging from 35 to 5 PSU</li>
 			  <!-- Peteiro et al., 2012, <i>Russian Journal of Marine Biology</i>)</small> -->
 		      </section>
+
+		      <section>
+		        <h3>Temperature tolerance of a population</h3>
+		        <img width="70%" height="auto" src="figures/Garrison-2010-Fig16_2.png">
+		        <p class="authors">Garrison (2010); Oceanography</p>
+			<aside class="notes">
+			  Draw at the blackboard what we could expect -
+			  Migration, adaptation or extinction - we have
+			  a sessile species with relatively low
+			  dispersal capacity.
+			</aside>
+		      </section>
+
+		      <section>
+			<h3>Disappearance of a bull kelp forest in Northern California</h3>
+			<div id="left50">
+			  <img width="100%" height="auto" src="figures/BullKelp1.jpg">
+		      	</div>
+		      	<div id="right50">
+		      	  <img width="100%" height="auto" src="figures/BullKelp2.jpg">
+		      	</div>
+			<p class="authors">Kevin Joe and Cynthia Catton, California Department of Fish and Wildlife</p>
+		      </section>
+		      
 		    </section>
 
 		    
