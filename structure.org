@@ -1,5 +1,9 @@
 40 slides for 45 minutes talk
 
+- Still need to get slide transitions and some slides right.
+
+- I had written once in a proposal that the decline of seagrass due to
+  the wasting disease was directly affecting fisheries in a negative way. find that back.
 
 - Add text to slides and where to ask questions etc.
 
@@ -12,13 +16,17 @@
 
 
 Time structure:
-Climate change: 5 mins
-What are ocean forests: 5 mins - 10 mins
-Why is the impact important: 5 mins - 15 mins
-What factor has the biggest impact: 4 mins (measured 3) - 19 mins
-Range shifts of ocean forests: 8 mins - 27 mins
-Impact on genetic diversity: 8 mins - 32 mins
-Impact on species diversity: 8 mins - 40 mins
+Climate change: 5 mins (measured 5)
+What are ocean forests: 5 mins (measured 5) - 10 mins
+Why is the impact important: 5 mins (measured 5:30) - 15.5 mins
+What factor has the biggest impact: 4 mins (measured 3) - 18.5 mins
+Range shifts of ocean forests: 8 mins (09:40 ) - 28 mins
+1 minute to clarify diverity -29 mins
+Impact on genetic diversity: 8 mins (measured 7) - 36 mins
+Impact on species diversity: 8 mins (measured 09:40) - 45.5 mins
+2mins in end - 47.4 mins
+
+
 
 
 
