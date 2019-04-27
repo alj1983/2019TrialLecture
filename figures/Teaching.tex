@@ -1,0 +1,103 @@
+\documentclass{article}
+
+\renewcommand{\familydefault}{\sfdefault}  %serifenlose Schrift
+\usepackage{helvet} % Schrift: Helvetica
+
+
+\usepackage{graphicx,graphics,tikz}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{marvosym} % to be able to show male and female symbols with: \Female and \Male
+\usepackage{gensymb}
+\usepackage[graphics,tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\newlength\imagewidth
+\newlength\imagescale
+
+\begin{document}
+
+\pgfmathsetlength{\imagewidth}{10cm} % desired displayed width of image
+\pgfmathsetlength{\imagescale}{\imagewidth/2000} % pixel width of image
+% adjust scale of tikzpicture (and direction of y) such that pixel
+% coordinates can be used for drawing overlays:
+\usetikzlibrary{backgrounds}
+
+% https://gocanvas.stanford.edu/wp-content/uploads/2015/08/Student-CenteredLearning.png
+% https://www.google.com/search?client=ubuntu&hs=ZH4&channel=fs&biw=1479&bih=844&tbm=isch&sa=1&ei=6AvDXOyqGM2tkwW0w4SoBQ&q=student+centered&oq=student+centered&gs_l=img.3..0i67j0l9.37870.40122..40268...0.0..1.394.4086.3j2j4j7......1....1..gws-wiz-img.......35i39.7CWwyaoSuS4#imgrc=kQaBJxuv_e33YM:
+
+\begin{tikzpicture}[font=\sffamily]
+
+  \draw[fill=red!10!white,rounded corners=10pt] (-6cm,-0.5cm) rectangle (2.5cm,-5.2cm);
+  \draw[fill=green!10!white,rounded corners=10pt] (2.7cm,-0.5cm) rectangle (11cm,-5.2cm);
+  
+\node[scale=1.1] at (0cm,0cm){\textbf{Teacher-centered}};
+\node[anchor=east,scale=0.7] at (-2.5cm,-1cm){Lecture-based};
+\node[anchor=east,scale=0.7] at (-2.5cm,-1.4cm){Test/ Drill};
+\node[anchor=east,scale=0.7] at (-2.5cm,-1.8cm){Instruction};
+\node[anchor=east,scale=0.7] at (-2.5cm,-2.6cm){Learning correct answers};
+\node[anchor=east,scale=0.7] at (-2.5cm,-3.4cm){Competitive};
+
+\node[draw,rectangle,rounded corners=2pt,minimum size=0.2cm,inner sep=2pt,scale=0.9] at (0cm,-1cm) {Teacher};
+\node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (-1.2cm,-2.5cm) {};
+\node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (-0.4cm,-2.5cm) {};
+\node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (0.4cm,-2.5cm) {};
+\node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (1.2cm,-2.5cm) {};
+
+\begin{scope}[yshift=-0.8cm]
+\node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (-1.2cm,-2.5cm) {};
+\node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (-0.4cm,-2.5cm) {};
+\node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (0.4cm,-2.5cm) {};
+\node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (1.2cm,-2.5cm) {};
+\end{scope}
+
+  \node[scale=0.9] at (0cm,-4.4cm){Group of students};
+
+\draw [-latex,line width=0.05cm] (0cm,-1.3cm) --  node [left=0.3cm,scale=0.7,text width=2.2cm]  {Knowledge \& \\ Experience} (0cm,-2.2cm);
+  
+
+\begin{scope}[xshift=5.5cm]
+  \node[scale=1.1] at (0cm,0cm){\textbf{Student-centered}};
+
+  \node[anchor=west,scale=0.7] at (2.5cm,-1cm){Project-based};
+    \node[anchor=west,scale=0.7] at (2.5cm,-1.4cm){Intrinsic motivation};
+  \node[anchor=west,scale=0.7] at (2.5cm,-1.8cm){Guidance};
+  \node[anchor=west,scale=0.7] at (2.5cm,-2.2cm){Discovery};
+  \node[anchor=west,scale=0.7] at (2.5cm,-2.6cm){Critical reflection};
+  \node[anchor=west,scale=0.7] at (2.5cm,-3cm){Authentic (real-life)};
+    \node[anchor=west,scale=0.7] at (2.5cm,-3.4cm){Cooperative /supportive};
+
+  \node[draw,rectangle,rounded corners=2pt,minimum size=0.2cm,inner sep=2pt,scale=0.9] at (-1cm,-1.3cm) {Teacher};
+
+  \draw[latex-latex, line width=0.05cm] (-0.3cm,-1.5cm) -- (1.4cm,-1.8cm);
+
+  \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (1.6cm,-1.5cm) {};
+  \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (2.1cm,-1.7cm) {};
+  \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (1.7cm,-2.05cm) {};
+
+  \draw[latex-latex, line width=0.05cm] (-0.4cm,-1.7cm) -- (-0.2cm,-2.3cm);
+
+  \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (-0cm,-2.6cm) {};
+
+  \draw[latex-latex, line width=0.05cm] (-0.3cm,-1.6cm) -- (1.2cm,-3.2cm);
+   \draw[latex-latex, line width=0.05cm] (1.6cm,-2.4cm) -- (1.6cm,-3.3cm);
+
+  \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (1.8cm,-3.6cm) {};
+  \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (1.3cm,-3.7cm) {};
+
+  \draw[latex-latex, line width=0.05cm] (-0.9cm,-1.7cm) -- (-0.8cm,-2.7cm);
+
+  \begin{scope}[xshift=-2.5cm,yshift=-1.6cm]
+    \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (1.6cm,-1.5cm) {};
+  \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (2.1cm,-1.7cm) {};
+  \node[draw,circle,minimum size=0.6cm,inner sep=2pt,scale=0.9] at (1.7cm,-2.05cm) {};
+  \end{scope}
+  \node[scale=0.9] at (0cm,-4.4cm){Individual and collaborating students};
+\end{scope}
+
+
+
+\end{tikzpicture}
+
+\end{document}
